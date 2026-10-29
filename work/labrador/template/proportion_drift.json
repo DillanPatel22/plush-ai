@@ -1,0 +1,18 @@
+{
+ "length_to_height": {
+  "template": 1.208,
+  "raw": 1.207,
+  "diff_pct": 0.1
+ },
+ "elbow_over_height": {
+  "template": 0.426,
+  "raw": 0.429,
+  "diff_pct": -0.7
+ },
+ "nose_to_chest_over_height": {
+  "template": 0.339,
+  "raw": 0.338,
+  "diff_pct": 0.3
+ },
+ "withers_height_mm": 554.0
+}

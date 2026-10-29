@@ -1,0 +1,13 @@
+{
+ "pitch_mm": 4.0,
+ "close_mm": 12.0,
+ "round_head_mm": 5.0,
+ "round_body_mm": 10.0,
+ "head_end_mm": 230.0,
+ "sole_mm": 6.0,
+ "vertices": 91632,
+ "faces": 183260,
+ "watertight": true,
+ "volume_l": 41.87,
+ "seconds": 8
+}

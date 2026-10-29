@@ -1,0 +1,17 @@
+{
+ "faces": 4928,
+ "quads_pct": 97.8,
+ "vertices": 4921,
+ "non_manifold_edges": 0,
+ "boundary_edges": 0,
+ "symmetry_max_err_mm": 0.0,
+ "dist_to_dense_mean_mm": 1.47,
+ "dist_to_dense_max_mm": 6.6,
+ "vertex_order_checksum": 427414338,
+ "checks": {
+  "watertight_manifold": true,
+  "faces_4k_6k": true,
+  "symmetry_le_0.5mm": true,
+  "shape_mean_dev_le_2mm": true
+ }
+}

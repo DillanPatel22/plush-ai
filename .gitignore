@@ -2,3 +2,4 @@ vendor/
 __pycache__/
 *.blend1
 work/**/tmp/
+work/*/raw/tripo_multiview_*.glb

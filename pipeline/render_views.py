@@ -14,6 +14,7 @@ from mathutils import Vector
 args = sys.argv[1:]
 src, out = Path(args[0]), Path(args[1])
 plain = "--plain" in args
+wire = "--wire" in args
 views = "side,front,three_quarter,back,top"
 if "--views" in args:
     views = args[args.index("--views") + 1]
@@ -28,7 +29,6 @@ scene.cycles.samples = 24
 scene.cycles.use_denoising = True
 scene.render.resolution_x, scene.render.resolution_y = 1000, 750
 scene.render.film_transparent = False
-scene.unit_settings.scale_length = 0.001
 
 ext = src.suffix.lower()
 if ext in (".glb", ".gltf"):
@@ -43,20 +43,30 @@ for o in objs:
     o.rotation_mode = "XYZ"
     if ext == ".ply":
         o.rotation_euler = (0, 0, 0)
+    o.scale = (0.001, 0.001, 0.001)          # mm -> m so lights behave physically
     for p in o.data.polygons:
         p.use_smooth = True
+bpy.context.view_layer.update()
 
 if plain or not any(o.data.materials for o in objs):
     mat = bpy.data.materials.new("plush")
     mat.use_nodes = True
     bsdf = mat.node_tree.nodes["Principled BSDF"]
-    bsdf.inputs["Base Color"].default_value = (0.93, 0.91, 0.87, 1)
+    bsdf.inputs["Base Color"].default_value = (0.80, 0.74, 0.64, 1)
     bsdf.inputs["Roughness"].default_value = 0.85
     for name in ("Sheen Weight", "Sheen"):
         if name in bsdf.inputs:
             bsdf.inputs[name].default_value = 0.6
     for o in objs:
         o.data.materials.clear(); o.data.materials.append(mat)
+
+if wire:
+    wm = bpy.data.materials.new("wire"); wm.use_nodes = True
+    wm.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.12, 0.2, 0.35, 1)
+    for o in list(objs):
+        w = o.copy(); w.data = o.data.copy(); scene.collection.objects.link(w)
+        mod = w.modifiers.new("wf", "WIREFRAME"); mod.thickness = 1.2; mod.use_replace = True
+        w.data.materials.clear(); w.data.materials.append(wm)
 
 # bounds
 pts = [o.matrix_world @ Vector(c) for o in objs for c in o.bound_box]
@@ -69,19 +79,21 @@ size = max(mx - mn)
 bpy.ops.mesh.primitive_plane_add(size=size * 6, location=(ctr.x, ctr.y, mn.z))
 ground = bpy.context.object
 gm = bpy.data.materials.new("ground"); gm.use_nodes = True
-gm.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (1, 1, 1, 1)
+gm.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.75, 0.75, 0.75, 1)
 ground.data.materials.append(gm)
 ground.is_shadow_catcher = False
 world = bpy.data.worlds.new("w"); scene.world = world; world.use_nodes = True
-world.node_tree.nodes["Background"].inputs["Color"].default_value = (1, 1, 1, 1)
-world.node_tree.nodes["Background"].inputs["Strength"].default_value = 0.9
+world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.9, 0.9, 0.9, 1)
+world.node_tree.nodes["Background"].inputs["Strength"].default_value = 0.6
 
 def add_light(loc, energy):
     bpy.ops.object.light_add(type="AREA", location=loc)
     l = bpy.context.object; l.data.energy = energy; l.data.size = size
     d = ctr - l.location; l.rotation_euler = d.to_track_quat("-Z", "Y").to_euler()
-add_light(ctr + Vector((size, -size, size * 1.5)), 3e6 * (size / 1000) ** 2)
-add_light(ctr + Vector((-size, size * 0.5, size)), 1.5e6 * (size / 1000) ** 2)
+add_light(ctr + Vector((size, -size, size * 1.5)), 110 * size ** 2)
+add_light(ctr + Vector((-size, size * 0.5, size)), 45 * size ** 2)
+scene.view_settings.view_transform = "AgX" if "AgX" in [i.identifier for i in scene.view_settings.bl_rna.properties["view_transform"].enum_items] else "Filmic"
+scene.view_settings.look = "None"
 
 cam_data = bpy.data.cameras.new("cam"); cam_data.type = "ORTHO"; cam_data.ortho_scale = size * 1.15
 cam_data.clip_end = size * 20
@@ -92,12 +104,12 @@ dirs = {
     "front": Vector((0, -1, 0)),        # camera in front of the nose (-Y)
     "back": Vector((0, 1, 0)),
     "three_quarter": Vector((0.75, -0.65, 0.35)),
-    "top": Vector((0.0001, 0, 1)),
+    "top": Vector((0, -0.02, 1)),
 }
 for name in views:
     d = dirs[name].normalized()
     cam.location = ctr + d * size * 4
-    cam.rotation_euler = (ctr - cam.location).to_track_quat("-Z", "Z" if name != "top" else "Y").to_euler()
+    cam.rotation_euler = (ctr - cam.location).to_track_quat("-Z", "Y").to_euler()
     scene.render.filepath = str(out / f"{name}.png")
     bpy.ops.render.render(write_still=True)
     print("rendered", name)
