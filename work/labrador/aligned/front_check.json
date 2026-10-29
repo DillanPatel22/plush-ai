@@ -1,0 +1,17 @@
+{
+ "head_width_band_80_95": {
+  "mesh": 0.359,
+  "reference": 0.37,
+  "diff_pct": -3.0
+ },
+ "chest_width_band_45_60": {
+  "mesh": 0.361,
+  "reference": 0.352,
+  "diff_pct": 2.6
+ },
+ "legs_band_10_25": {
+  "mesh": 0.314,
+  "reference": 0.334,
+  "diff_pct": -6.0
+ }
+}

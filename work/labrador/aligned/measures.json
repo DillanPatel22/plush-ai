@@ -1,0 +1,44 @@
+{
+ "withers_height_mm": 560.0,
+ "elbow_height_mm": 240.0,
+ "body_length_mm": 676.0,
+ "length_to_height": 1.207,
+ "elbow_over_height": 0.429,
+ "nose_to_chest_front_mm": 189.0,
+ "front_leg_y_mm": [
+  300.0,
+  378.0
+ ],
+ "rear_leg_y_mm": [
+  767.0,
+  879.0
+ ],
+ "landmarks_px": {
+  "withers": [
+   419,
+   171
+  ],
+  "elbow": [
+   411,
+   491
+  ],
+  "chest_front": 199,
+  "buttock": 875,
+  "ground": 731
+ },
+ "scale_applied": 1140.363636,
+ "vertices": 93421,
+ "faces": 150000,
+ "watertight": false,
+ "bbox_mm": [
+  280.4,
+  1117.7,
+  721.5
+ ],
+ "reference": {
+  "length_to_height": 1.202,
+  "elbow_over_height": 0.434,
+  "nose_to_chest_over_height": 0.342
+ },
+ "nose_to_chest_over_height": 0.338
+}

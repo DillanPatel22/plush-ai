@@ -1,0 +1,28 @@
+{
+  "breed": "Labrador Retriever",
+  "standards": {
+    "kennel_club_uk": {
+      "height_at_withers_cm": {"male": [56, 57], "female": [55, 56]},
+      "notes": "Strongly built, short-coupled; broad skull with defined stop; jaws of medium length; broad and deep through chest; ears not large, hanging close, set rather far back; 'otter' tail.",
+      "source": "https://www.kusa.co.za/images/BREED%20STANDARDS%20EFFECTIVE%2001%20JULY%202025/Retriever%20(Labrador)%20-%20KC%20[07-2025].pdf"
+    },
+    "ukc": {
+      "length_to_height": "equal to or only slightly longer (prosternum to point of buttock vs withers to ground)",
+      "elbow_to_ground_over_height": 0.5,
+      "skull_to_muzzle": "approximately equal",
+      "source": "https://www.UKCDogs.com/docs/breeds/labrador-retriever.pdf"
+    }
+  },
+  "photo_measurements_rough": {
+    "method": "Landmarks read off gridded side-view photos (Wikimedia Commons, CC BY-SA 4.0, measurement only). Close-range show photos: perspective error likely +-5 %.",
+    "Lab-yellow4.jpg": {"length_to_height": 1.27, "elbow_over_height": 0.47},
+    "Lab-black1.jpg": {"length_to_height": 1.22, "elbow_over_height": 0.49},
+    "Lab-yellow3.jpg": {"length_to_height": 1.30, "elbow_over_height": 0.46}
+  },
+  "targets_for_base_mesh": {
+    "length_to_height": {"target": 1.15, "accept": [1.07, 1.27], "why": "between the standard (1.0-1.1) and real dogs in photos (1.2-1.3); plush reads better slightly compact"},
+    "elbow_over_height": {"target": 0.48, "accept": [0.45, 0.52]},
+    "skull_over_muzzle": {"target": 1.0, "accept": [0.9, 1.1]},
+    "head_length_over_height": {"target": 0.42, "accept": [0.38, 0.46], "why": "read from photos; firm up with more references"}
+  }
+}
