@@ -1,0 +1,19 @@
+{
+ "version": "0.3-candidate",
+ "status": "awaiting approval (not frozen)",
+ "source": "work/labrador/template_v03/canonical.obj",
+ "built_by": "pipeline/build_breed.sh work/labrador template_v03 M 350 14",
+ "changes_vs_v0.1": [
+  "ears removed from the body mesh (ears are separate flat pieces, see work/labrador/ears)",
+  "muscle detail simplified on body and legs (Taubin 200 iterations), head detail kept (6 iterations)",
+  "flat soles 14 mm"
+ ],
+ "vertices": 4618,
+ "triangles": 9232,
+ "watertight": true,
+ "symmetry_max_mm": 0.0,
+ "withers_mm": 547.0,
+ "length_to_height": 1.225,
+ "elbow_over_height": 0.419,
+ "frame": "mm; X left/right (symmetry X=0), Y nose to tail (nose at min Y), Z up (ground Z=0)"
+}

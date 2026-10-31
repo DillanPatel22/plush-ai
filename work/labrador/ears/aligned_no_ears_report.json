@@ -1,0 +1,6 @@
+{
+ "region_vertices": 6099,
+ "max_move_mm": 101.3,
+ "mean_move_mm": 29.1,
+ "p95_move_mm": 72.8
+}

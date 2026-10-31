@@ -3,3 +3,5 @@ __pycache__/
 *.blend1
 work/**/tmp/
 work/*/raw/tripo_multiview_*.glb
+work/*/pieces_*/subdivided.obj
+work/*/pieces_*/labelled*.ply

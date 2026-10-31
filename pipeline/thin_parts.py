@@ -46,7 +46,8 @@ for z in np.linspace(0.04 * H, 0.35 * H, 8):
         report["legs"].append({"z_mm": round(z, 1), "y_mm": round(float(c[1]), 1), "plush_width_mm": round(w * k, 1)})
 y_but = ms["nose_to_chest_front_mm"] + ms["body_length_mm"]
 ymax = m.vertices[:, 1].max()
-for y in np.linspace(y_but + 15, ymax - 10, 8):
+tail_len = ymax - y_but
+for y in np.linspace(y_but + 15, ymax - 0.12 * tail_len, 8):          # last 12 % is the rounded tip cap
     for c, w in sections([0, y, 0], [0, 1, 0], lambda c: c[2] > 0.45 * H):
         report["tail"].append({"y_mm": round(float(y), 1), "plush_width_mm": round(w * k, 1)})
 thin = [s for s in report["legs"] + report["tail"] if s["plush_width_mm"] < min_w]

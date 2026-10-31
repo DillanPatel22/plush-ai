@@ -1,0 +1,4 @@
+{"side_image": "ref/side_72b622a5.png", "front_image": "ref/front_bb98ec78.png", "withers_mm": 560,
+ "eye_side_px": [335, 231], "eye_front_px": [[952.5, 206], [1092.5, 206]],
+ "eye_width_front_px": 40, "nose_width_front_px": 75,
+ "note": "pixel positions in the original reference images, read by eye from gridded crops"}
