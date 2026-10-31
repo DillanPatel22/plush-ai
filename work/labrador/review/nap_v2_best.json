@@ -1,0 +1,132 @@
+{
+ "pieces": {
+  "P01": {
+   "area_off_30deg_pct": 3.6,
+   "area_off_60deg_pct": 0.0,
+   "median_error_deg": 3.0,
+   "flip_u": false,
+   "rotation_rad": -1.5708
+  },
+  "P02": {
+   "area_off_30deg_pct": 5.6,
+   "area_off_60deg_pct": 4.2,
+   "median_error_deg": 9.0,
+   "flip_u": false,
+   "rotation_rad": -2.64803
+  },
+  "P04": {
+   "area_off_30deg_pct": 5.7,
+   "area_off_60deg_pct": 0.0,
+   "median_error_deg": 3.0,
+   "flip_u": false,
+   "rotation_rad": -1.5708
+  },
+  "P05": {
+   "area_off_30deg_pct": 4.1,
+   "area_off_60deg_pct": 0.3,
+   "median_error_deg": 8.0,
+   "flip_u": false,
+   "rotation_rad": -2.24095
+  },
+  "P07": {
+   "area_off_30deg_pct": 9.4,
+   "area_off_60deg_pct": 3.1,
+   "median_error_deg": 7.0,
+   "flip_u": false,
+   "rotation_rad": -1.12516
+  },
+  "P09": {
+   "area_off_30deg_pct": 4.3,
+   "area_off_60deg_pct": 0.4,
+   "median_error_deg": 13.0,
+   "flip_u": false,
+   "rotation_rad": -0.95932
+  },
+  "P10": {
+   "area_off_30deg_pct": 30.9,
+   "area_off_60deg_pct": 16.7,
+   "median_error_deg": 5.0,
+   "flip_u": false,
+   "rotation_rad": -1.62148
+  },
+  "P12": {
+   "area_off_30deg_pct": 0.5,
+   "area_off_60deg_pct": 0.0,
+   "median_error_deg": 3.0,
+   "flip_u": false,
+   "rotation_rad": 1.08775
+  },
+  "P14": {
+   "area_off_30deg_pct": 0.2,
+   "area_off_60deg_pct": 0.1,
+   "median_error_deg": 2.0,
+   "flip_u": false,
+   "rotation_rad": -4.2429
+  },
+  "P16": {
+   "area_off_30deg_pct": 5.6,
+   "area_off_60deg_pct": 0.0,
+   "median_error_deg": 6.0,
+   "flip_u": false,
+   "rotation_rad": -1.02333
+  },
+  "P18": {
+   "area_off_30deg_pct": 4.6,
+   "area_off_60deg_pct": 1.0,
+   "median_error_deg": 5.0,
+   "flip_u": false,
+   "rotation_rad": -2.1446
+  },
+  "P20": {
+   "area_off_30deg_pct": 97.5,
+   "area_off_60deg_pct": 95.3,
+   "median_error_deg": 90.0,
+   "flip_u": false,
+   "rotation_rad": -4.09474
+  },
+  "P22": {
+   "area_off_30deg_pct": 95.8,
+   "area_off_60deg_pct": 95.8,
+   "median_error_deg": 90.0,
+   "flip_u": false,
+   "rotation_rad": -3.8172
+  },
+  "P24": {
+   "area_off_30deg_pct": 3.8,
+   "area_off_60deg_pct": 0.9,
+   "median_error_deg": 6.0,
+   "flip_u": false,
+   "rotation_rad": -2.08375
+  }
+ },
+ "regions": {
+  "body side": {
+   "area_off_30deg_pct": 7.4,
+   "area_off_60deg_pct": 1.7
+  },
+  "head": {
+   "area_off_30deg_pct": 4.1,
+   "area_off_60deg_pct": 0.5
+  },
+  "chest & shoulder fronts": {
+   "area_off_30deg_pct": 3.8,
+   "area_off_60deg_pct": 3.2
+  },
+  "legs": {
+   "area_off_30deg_pct": 7.4,
+   "area_off_60deg_pct": 5.1
+  },
+  "tail": {
+   "area_off_30deg_pct": 6.3,
+   "area_off_60deg_pct": 2.8
+  },
+  "underbody": {
+   "area_off_30deg_pct": 20.8,
+   "area_off_60deg_pct": 3.7
+  },
+  "soles (pads, no pile)": {
+   "area_off_30deg_pct": 95.7,
+   "area_off_60deg_pct": 93.9
+  }
+ }
+}

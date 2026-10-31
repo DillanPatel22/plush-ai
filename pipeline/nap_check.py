@@ -4,10 +4,12 @@ Each piece is cut with its nap fixed (0 or 180 degrees on the roll), so on the f
 single fabric direction per piece. Mapped back onto the 3D surface through the flattening, that direction is
 compared with the dog's coat direction field:
   head and muzzle: nose -> back of skull;   neck and body sides: back and down (about 35 degrees below horizontal);
-  chest front and legs: straight down;      underbody: back;      tail: towards the tip.
+  throat, chest and fronts of the shoulders (forward-facing): down;   legs: down;      underbody: back;      tail: towards the tip.
 Reports, per piece and per body region, the share of area whose pile is more than 30 / 60 degrees off.
 
-Usage: python3 nap_check.py flat_dir measures.json plush_nose_to_tail_mm out.json
+Usage: python3 nap_check.py flat_dir measures.json plush_nose_to_tail_mm out.json [--best]
+--best: rotate each piece so its area-weighted coat direction points down the roll (the rule for layout v2);
+without it, the v1 export's rule (legs down, everything else nose to tail).
 """
 import json, math, sys
 from pathlib import Path
@@ -27,7 +29,8 @@ def coat(P, N, y0):
     y = (P[:, 1] - y0) / k; z = P[:, 2] / k
     d = np.tile([0.0, 0.82, -0.57], (len(P), 1)); reg = np.full(len(P), "body side", object)
     head = y < 230; d[head] = [0, 1, 0]; reg[head] = "head"
-    chest = (y >= 200) & (y < 330) & (N[:, 1] < -0.3) & (z < 480); d[chest] = [0, 0, -1]; reg[chest] = "chest"
+    # throat, chest and the front of the shoulders face forward; the coat there runs down
+    chest = (y >= 150) & (y < 360) & (N[:, 1] < -0.3) & (z < 520); d[chest] = [0, 0, -1]; reg[chest] = "chest & shoulder fronts"
     under = (N[:, 2] < -0.5) & ~head; d[under] = [0, 1, 0]; reg[under] = "underbody"
     legs = z < leg_top_real * 0.9; d[legs] = [0, 0, -1]; reg[legs] = "legs"
     tail = (y > ms["nose_to_chest_front_mm"] + ms["body_length_mm"] + 30) & (z > 0.45 * ms["withers_height_mm"])
@@ -53,20 +56,22 @@ rep = {"pieces": {}, "regions": {}}
 reg_acc = {}
 for f in files:
     d = np.load(f); V3, F, uv = d["V3"], d["F"], d["uv"].copy()
-    if np.sign([sa(uv[t]) for t in F[:500]]).mean() < 0: uv[:, 0] *= -1
+    flip = bool(np.sign([sa(uv[t]) for t in F[:500]]).mean() < 0)
+    if flip: uv[:, 0] *= -1
     J = jac(V3, F, uv); C = V3[F].mean(1)
     n = np.cross(V3[F[:, 1]] - V3[F[:, 0]], V3[F[:, 2]] - V3[F[:, 0]]); A = np.linalg.norm(n, axis=1); n /= A[:, None] + 1e-12
     def to2d(f3):
         f3 = f3 - (f3 * n).sum(1, keepdims=True) * n; return np.einsum("nij,nj->ni", J, f3)
-    f2 = (to2d(export_fur(C)) * A[:, None]).sum(0)
+    want, reg = coat(C, n, y0)
+    f2 = (to2d(want if "--best" in sys.argv else export_fur(C)) * A[:, None]).sum(0)
     rot = -math.pi / 2 - math.atan2(f2[1], f2[0])                    # export: area-weighted fur points down
     nap = np.array([math.cos(-math.pi / 2 - rot), math.sin(-math.pi / 2 - rot)])   # pile direction in the piece's uv
-    want, reg = coat(C, n, y0)
     w2 = to2d(want); w2 /= np.linalg.norm(w2, axis=1, keepdims=True) + 1e-12
     err = np.degrees(np.arccos(np.clip(w2 @ nap, -1, 1)))
     rep["pieces"][f.stem] = {"area_off_30deg_pct": round(100 * A[err > 30].sum() / A.sum(), 1),
                              "area_off_60deg_pct": round(100 * A[err > 60].sum() / A.sum(), 1),
-                             "median_error_deg": round(float(np.median(err)), 0)}
+                             "median_error_deg": round(float(np.median(err)), 0),
+                             "flip_u": flip, "rotation_rad": round(rot, 5)}    # uv -> cutting layout (pile points down)
     for r in np.unique(reg):
         s_ = reg == r; a = reg_acc.setdefault(r, [0.0, 0.0, 0.0])
         a[0] += A[s_].sum(); a[1] += A[s_ & (err > 30)].sum(); a[2] += A[s_ & (err > 60)].sum()

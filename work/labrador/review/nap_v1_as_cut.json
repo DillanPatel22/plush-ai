@@ -1,0 +1,97 @@
+{
+ "pieces": {
+  "P01": {
+   "area_off_30deg_pct": 3.1,
+   "area_off_60deg_pct": 0.0,
+   "median_error_deg": 3.0,
+   "flip_u": false,
+   "rotation_rad": -1.5708
+  },
+  "P02": {
+   "area_off_30deg_pct": 16.4,
+   "area_off_60deg_pct": 3.7,
+   "median_error_deg": 5.0,
+   "flip_u": false,
+   "rotation_rad": -1.32198
+  },
+  "P04": {
+   "area_off_30deg_pct": 5.9,
+   "area_off_60deg_pct": 0.3,
+   "median_error_deg": 3.0,
+   "flip_u": false,
+   "rotation_rad": -1.5708
+  },
+  "P05": {
+   "area_off_30deg_pct": 33.9,
+   "area_off_60deg_pct": 22.8,
+   "median_error_deg": 20.0,
+   "flip_u": false,
+   "rotation_rad": -1.57946
+  },
+  "P07": {
+   "area_off_30deg_pct": 41.9,
+   "area_off_60deg_pct": 25.3,
+   "median_error_deg": 26.0,
+   "flip_u": false,
+   "rotation_rad": -1.5972
+  },
+  "P08": {
+   "area_off_30deg_pct": 97.5,
+   "area_off_60deg_pct": 95.1,
+   "median_error_deg": 90.0,
+   "flip_u": false,
+   "rotation_rad": -4.02083
+  },
+  "P10": {
+   "area_off_30deg_pct": 95.8,
+   "area_off_60deg_pct": 95.8,
+   "median_error_deg": 90.0,
+   "flip_u": false,
+   "rotation_rad": -3.8172
+  },
+  "P12": {
+   "area_off_30deg_pct": 7.3,
+   "area_off_60deg_pct": 1.5,
+   "median_error_deg": 20.0,
+   "flip_u": false,
+   "rotation_rad": -1.76878
+  },
+  "P15": {
+   "area_off_30deg_pct": 30.5,
+   "area_off_60deg_pct": 3.4,
+   "median_error_deg": 26.0,
+   "flip_u": false,
+   "rotation_rad": -1.64544
+  }
+ },
+ "regions": {
+  "body side": {
+   "area_off_30deg_pct": 8.9,
+   "area_off_60deg_pct": 2.3
+  },
+  "head": {
+   "area_off_30deg_pct": 2.8,
+   "area_off_60deg_pct": 0.1
+  },
+  "chest & shoulder fronts": {
+   "area_off_30deg_pct": 90.1,
+   "area_off_60deg_pct": 73.2
+  },
+  "legs": {
+   "area_off_30deg_pct": 61.4,
+   "area_off_60deg_pct": 34.3
+  },
+  "soles (pads, no pile)": {
+   "area_off_30deg_pct": 96.7,
+   "area_off_60deg_pct": 94.9
+  },
+  "tail": {
+   "area_off_30deg_pct": 9.3,
+   "area_off_60deg_pct": 2.3
+  },
+  "underbody": {
+   "area_off_30deg_pct": 41.8,
+   "area_off_60deg_pct": 24.6
+  }
+ }
+}

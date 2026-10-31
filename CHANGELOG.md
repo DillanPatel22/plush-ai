@@ -9,3 +9,4 @@ Git tags can't be pushed from the build sessions, so versions are recorded here 
 | labrador-pattern-v1 | 967f1cd | Labrador standing, size M (350 mm): 20 pieces, laser DXF, 1:1 PDF, bilingual assembly sheet, for a fleece mock-up |
 | dog-base-v0.4-candidate | 893e7c1 | Face fixed: skull width restored, ear-root cushion, head profile fitted to the side photo, denser mesh; face check within 5.3 % of the photos |
 | labrador-pattern-v1.1 | 893e7c1 | Same v1 seam layout regenerated on the v0.4 shape. Not for cutting: seam layout v2 (separate legs and chest, head darts) pending craftsman approval |
+| layout-standing-v2-proposal | (this commit) | Seam layout v2 proposal for craftsman approval: separate legs, chest bib, belly halves, muzzle sides; 29 pieces; English one-page sheet |

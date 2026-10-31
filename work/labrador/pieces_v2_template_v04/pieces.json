@@ -1,0 +1,205 @@
+{
+ "layout": "standing v2 (proposal)",
+ "pieces": {
+  "P01": {
+   "name": "head gusset",
+   "label": 1,
+   "faces": 1066,
+   "area_cm2_real": 167.8,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P02": {
+   "name": "side head R",
+   "label": 2,
+   "faces": 2584,
+   "area_cm2_real": 383.7,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P03": {
+   "name": "side head L",
+   "label": 3,
+   "faces": 2584,
+   "area_cm2_real": 383.7,
+   "euler": 1,
+   "mirror_of": "P02"
+  },
+  "P04": {
+   "name": "chin gusset",
+   "label": 4,
+   "faces": 1042,
+   "area_cm2_real": 104.8,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P05": {
+   "name": "muzzle side R",
+   "label": 21,
+   "faces": 907,
+   "area_cm2_real": 103.9,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P06": {
+   "name": "muzzle side L",
+   "label": 22,
+   "faces": 907,
+   "area_cm2_real": 103.9,
+   "euler": 1,
+   "mirror_of": "P05"
+  },
+  "P07": {
+   "name": "body side R",
+   "label": 5,
+   "faces": 20073,
+   "area_cm2_real": 2321.7,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P08": {
+   "name": "body side L",
+   "label": 6,
+   "faces": 20073,
+   "area_cm2_real": 2321.7,
+   "euler": 1,
+   "mirror_of": "P07"
+  },
+  "P09": {
+   "name": "chest panel",
+   "label": 9,
+   "faces": 6748,
+   "area_cm2_real": 872.0,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P10": {
+   "name": "belly R",
+   "label": 10,
+   "faces": 3710,
+   "area_cm2_real": 390.6,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P11": {
+   "name": "belly L",
+   "label": 11,
+   "faces": 3710,
+   "area_cm2_real": 390.6,
+   "euler": 1,
+   "mirror_of": "P10"
+  },
+  "P12": {
+   "name": "front leg outer R",
+   "label": 14,
+   "faces": 2112,
+   "area_cm2_real": 285.8,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P13": {
+   "name": "front leg outer L",
+   "label": 15,
+   "faces": 2112,
+   "area_cm2_real": 285.8,
+   "euler": 1,
+   "mirror_of": "P12"
+  },
+  "P14": {
+   "name": "front leg inner R",
+   "label": 16,
+   "faces": 1893,
+   "area_cm2_real": 271.5,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P15": {
+   "name": "front leg inner L",
+   "label": 17,
+   "faces": 1893,
+   "area_cm2_real": 271.5,
+   "euler": 1,
+   "mirror_of": "P14"
+  },
+  "P16": {
+   "name": "hind leg outer R",
+   "label": 18,
+   "faces": 2943,
+   "area_cm2_real": 345.4,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P17": {
+   "name": "hind leg outer L",
+   "label": 19,
+   "faces": 2943,
+   "area_cm2_real": 345.4,
+   "euler": 1,
+   "mirror_of": "P16"
+  },
+  "P18": {
+   "name": "hind leg inner R",
+   "label": 24,
+   "faces": 2547,
+   "area_cm2_real": 343.5,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P19": {
+   "name": "hind leg inner L",
+   "label": 25,
+   "faces": 2547,
+   "area_cm2_real": 343.5,
+   "euler": 1,
+   "mirror_of": "P18"
+  },
+  "P20": {
+   "name": "sole front R",
+   "label": 30,
+   "faces": 337,
+   "area_cm2_real": 40.6,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P21": {
+   "name": "sole front L",
+   "label": 31,
+   "faces": 337,
+   "area_cm2_real": 40.6,
+   "euler": 1,
+   "mirror_of": "P20"
+  },
+  "P22": {
+   "name": "sole hind R",
+   "label": 32,
+   "faces": 307,
+   "area_cm2_real": 36.5,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P23": {
+   "name": "sole hind L",
+   "label": 33,
+   "faces": 307,
+   "area_cm2_real": 36.5,
+   "euler": 1,
+   "mirror_of": "P22"
+  },
+  "P24": {
+   "name": "tail R",
+   "label": 12,
+   "faces": 2035,
+   "area_cm2_real": 260.2,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P25": {
+   "name": "tail L",
+   "label": 13,
+   "faces": 2035,
+   "area_cm2_real": 260.2,
+   "euler": 1,
+   "mirror_of": "P24"
+  }
+ }
+}
