@@ -15,6 +15,8 @@ args = sys.argv[1:]
 src, out = Path(args[0]), Path(args[1])
 plain = "--plain" in args
 wire = "--wire" in args
+head = "--head" in args
+vcol = "--vcol" in args          # use the mesh's vertex colours (preview PLY)          # frame the head only (nose to 330 mm back, above 420 mm), same lighting
 views = "side,front,three_quarter,back,top"
 if "--views" in args:
     views = args[args.index("--views") + 1]
@@ -48,7 +50,17 @@ for o in objs:
         p.use_smooth = True
 bpy.context.view_layer.update()
 
-if plain or not any(o.data.materials for o in objs):
+if vcol:
+    mat = bpy.data.materials.new("vcol"); mat.use_nodes = True
+    nt = mat.node_tree; bsdf = nt.nodes["Principled BSDF"]; vc = nt.nodes.new("ShaderNodeVertexColor")
+    for o in objs:
+        if o.data.color_attributes: vc.layer_name = o.data.color_attributes[0].name
+    nt.links.new(vc.outputs["Color"], bsdf.inputs["Base Color"]); bsdf.inputs["Roughness"].default_value = 0.8
+    for name in ("Sheen Weight", "Sheen"):
+        if name in bsdf.inputs: bsdf.inputs[name].default_value = 0.5
+    for o in objs:
+        o.data.materials.clear(); o.data.materials.append(mat)
+elif plain or not any(o.data.materials for o in objs):
     mat = bpy.data.materials.new("plush")
     mat.use_nodes = True
     bsdf = mat.node_tree.nodes["Principled BSDF"]
@@ -74,6 +86,12 @@ mn = Vector((min(p.x for p in pts), min(p.y for p in pts), min(p.z for p in pts)
 mx = Vector((max(p.x for p in pts), max(p.y for p in pts), max(p.z for p in pts)))
 ctr = (mn + mx) / 2
 size = max(mx - mn)
+if head:
+    hv = [o.matrix_world @ v.co for o in objs for v in o.data.vertices]
+    y0 = min(p.y for p in hv)
+    hv = [p for p in hv if p.y < y0 + 0.33 and p.z > 0.42]
+    hmn = Vector((min(p.x for p in hv), min(p.y for p in hv), min(p.z for p in hv)))
+    hmx = Vector((max(p.x for p in hv), max(p.y for p in hv), max(p.z for p in hv)))
 
 # ground + world
 bpy.ops.mesh.primitive_plane_add(size=size * 6, location=(ctr.x, ctr.y, mn.z))
@@ -94,8 +112,12 @@ add_light(ctr + Vector((size, -size, size * 1.5)), 110 * size ** 2)
 add_light(ctr + Vector((-size, size * 0.5, size)), 45 * size ** 2)
 scene.view_settings.view_transform = "AgX" if "AgX" in [i.identifier for i in scene.view_settings.bl_rna.properties["view_transform"].enum_items] else "Filmic"
 scene.view_settings.look = "None"
+if vcol:
+    scene.view_settings.view_transform = "Standard"; scene.view_settings.exposure = -1.4   # true coat colours
 
 cam_data = bpy.data.cameras.new("cam"); cam_data.type = "ORTHO"; cam_data.ortho_scale = size * 1.15
+if head:
+    ctr = (hmn + hmx) / 2; cam_data.ortho_scale = max(hmx - hmn) * 1.25
 cam_data.clip_end = size * 20
 cam = bpy.data.objects.new("cam", cam_data); scene.collection.objects.link(cam); scene.camera = cam
 

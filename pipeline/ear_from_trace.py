@@ -1,6 +1,9 @@
 """Ear module from an ear outline traced on the side reference photo.
 
 Usage: python3 ear_from_trace.py ear_trace.json side_ref.png template.obj withers_mm out_dir
+       python3 ear_from_trace.py ear_trace.json side_ref.png - withers_mm out_dir     (outline only, before plushify)
+Writes ear_outline_rel.npy (Y from the nose tip, Z from the ground) for plushify's ear removal, and with a
+template also the template-frame outline and the attachment line on the head.
 """
 import json, sys
 from pathlib import Path
@@ -9,7 +12,7 @@ from scipy.interpolate import splprep, splev
 sys.path.insert(0, str(Path(__file__).parent))
 import align_measure as am
 
-tr = json.load(open(sys.argv[1])); ref = sys.argv[2]; T = trimesh.load(sys.argv[3], process=False)
+tr = json.load(open(sys.argv[1])); ref = sys.argv[2]; T = None if sys.argv[3] == "-" else trimesh.load(sys.argv[3], process=False)
 withers = float(sys.argv[4]); out = Path(sys.argv[5]); out.mkdir(parents=True, exist_ok=True)
 mask = am.photo_mask(ref); res, _ = am.measure_mask(mask, 1.0)
 s = withers / res["withers_height_mm"]                          # mm per photo pixel
@@ -19,7 +22,7 @@ P = np.array(tr["points_crop"], float)
 px = ox + P[:, 0] / zf; py = oy + P[:, 1] / zf
 y_mm = (px - nose_px) * s; z_mm = (ground_px - py) * s
 # template frame: nose at Y = min Y of template; ground at Z = 0
-Ty0 = T.vertices[:, 1].min()
+Ty0 = 0.0 if T is None else T.vertices[:, 1].min()
 yz = np.c_[y_mm + Ty0, z_mm]
 # smooth closed spline through the traced points, 2 mm spacing
 tck, u = splprep([yz[:, 0], yz[:, 1]], s=len(yz) * 4.0, per=True)
@@ -27,6 +30,9 @@ L = np.linalg.norm(np.diff(yz, axis=0, append=yz[:1]), axis=1).sum()
 uu = np.linspace(0, 1, int(L / 2.0), endpoint=False)
 outline = np.c_[splev(uu, tck)]
 outline = np.array(outline).T if outline.shape[0] == 2 else outline
+np.save(out / "ear_outline_rel.npy", outline - [Ty0, 0.0])
+if T is None:
+    print("outline only:", len(outline), "points; RESULT: PASS"); sys.exit(0)
 # attachment edge: spline section between the first and last attach point
 ua = u[tr["attach_points"]]; att = np.where((uu >= ua.min()) & (uu <= ua.max()))[0]
 # Project the attachment edge onto the +X side of the skull. The traced top edge sits on the head's side
@@ -41,17 +47,25 @@ def side_hit(yv, zv):
     loc, idx, _ = ray.intersects_location(np.c_[np.full(len(yv), 400.0), yv, zv],
                                           np.tile([-1.0, 0, 0], (len(yv), 1)), multiple_hits=False)
     P = np.full((len(yv), 3), np.nan); P[idx] = loc; return P
-ATTACH_BELOW_TOP_MM = 25.0     # breed standards (UKC): Lab ears set "somewhat low on the skull; slightly above eye level"
+ATTACH_BELOW_TOP_MM = 23.0     # front photo: ear root ~23 mm under the skull top; breed standard: "slightly above eye level"
 ya, za = outline[att, 0], outline[att, 1]
 za = np.minimum(za, skull_top(ya) - ATTACH_BELOW_TOP_MM)
 on = side_hit(ya, za)
 miss = np.isnan(on[:, 0])
 if miss.any():
     on[miss] = trimesh.proximity.closest_point(T, np.c_[np.full(miss.sum(), 300.0), ya[miss], za[miss]])[0]
+# Fit the flap to the 3D attachment. In the side photo the ear's top edge is the fold, which shows level with
+# the skull top; the root itself sits lower (front photo: about 23 mm under the skull top). Keep the photo's
+# ear shape and tip height, and scale it vertically so its top edge meets the attachment line.
+z_att = float(on[:, 2].mean()); z_top = float(outline[att, 1].mean()); z_tip = float(outline[:, 1].min())
+sv = (z_att - z_tip) / (z_top - z_tip)
+photo_outline = outline.copy()
+outline = outline.copy(); outline[:, 1] = z_tip + (outline[:, 1] - z_tip) * sv
+np.save(out / "ear_outline_photo_mm.npy", photo_outline)
 np.save(out / "ear_outline_mm.npy", outline); np.save(out / "ear_attach_idx.npy", att); np.save(out / "ear_attach_on_template.npy", on)
 area = 0.5 * abs(np.dot(outline[:, 0], np.roll(outline[:, 1], 1)) - np.dot(outline[:, 1], np.roll(outline[:, 0], 1)))
 c = outline - outline.mean(0); _, _, vt = np.linalg.svd(c, full_matrices=False); ext = np.ptp(c @ vt.T, axis=0)
-info = {"mm_per_px": round(s, 4), "ear_area_cm2_real": round(area / 100, 1), "ear_length_mm_real": round(float(ext[0]), 1),
+info = {"mm_per_px": round(s, 4), "vertical_fit_to_attachment": round(sv, 3), "ear_area_cm2_real": round(area / 100, 1), "ear_length_mm_real": round(float(ext[0]), 1),
         "ear_width_mm_real": round(float(ext[1]), 1),
         "attach_line_mm_real": round(float(np.linalg.norm(np.diff(on, axis=0), axis=1).sum()), 1),
         "attach_on_template_x_mm": [round(float(on[:, 0].min()), 1), round(float(on[:, 0].max()), 1)]}

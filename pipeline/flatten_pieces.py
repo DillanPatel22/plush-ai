@@ -11,7 +11,7 @@ import json, sys
 from pathlib import Path
 import numpy as np, trimesh
 sys.path.insert(0, str(Path(__file__).parent))
-from flatten import flatten, flatten_injective, distortion, prescribe_boundary_lengths
+from flatten import flatten, flatten_injective, distortion, prescribe_boundary_lengths, fix_slivers
 from shapely.geometry import Polygon
 
 pdir, meas, size_mm, out = Path(sys.argv[1]), sys.argv[2], float(sys.argv[3]), Path(sys.argv[4])
@@ -58,7 +58,7 @@ for pid, mirror in pieces.items():
     else:
         p = trimesh.load(pdir / f"{pid}.obj", process=False)
         V = np.asarray(p.vertices, float); F = np.asarray(p.faces, np.int64)
-    Vk = V * k
+    Vk, slivers = fix_slivers(V * k, F)
     uv, bnd = flatten(Vk, F, iters=150)
     method = "lscm+arap"
     def outline_ok(uv_, bnd_):
@@ -88,7 +88,7 @@ for pid, mirror in pieces.items():
            "area_3d_cm2": round(a3.sum() / 100, 1), "area_flat_cm2": round(float((ar * a3).sum()) / 100, 1),
            "area_dev_p95": round(float(np.percentile(np.abs(ar - 1), 95)), 3),
            "len_dev_p95": round(float(np.percentile(np.abs(lr - 1), 95)), 3), "flipped": int((ar <= 0).sum()),
-           "mirror": mirror, "method": method, "closure_change_mm": None if closure is None else round(closure, 3), "outline_valid": bool(outline_ok(uv, bnd)), "boundary_len_ratio": round(float(L2 / L3), 3)}
+           "mirror": mirror, "method": method, "sliver_fixes": int(slivers), "closure_change_mm": None if closure is None else round(closure, 3), "outline_valid": bool(outline_ok(uv, bnd)), "boundary_len_ratio": round(float(L2 / L3), 3)}
     report["pieces"][pid] = rec
     np.savez(out / f"{pid}.npz", V3=Vk, F=F, uv=uv, bnd=bnd, area_ratio=ar)
     print(pid, rec)

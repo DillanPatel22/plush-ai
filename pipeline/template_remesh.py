@@ -1,4 +1,4 @@
-"""Remesh the dense plush solid into the base template: ~5,000 mostly-quad faces, exactly symmetrical,
+"""Remesh the dense plush solid into the base template: mostly-quad faces (target given), exactly symmetrical,
 with a deterministic vertex order. Runs Blender headless.
 
 Usage: python3 template_remesh.py plush_dense.ply out_dir [target_faces]
@@ -67,9 +67,19 @@ report = {
     "dist_to_dense_mean_mm": round(float(dd.mean()), 2), "dist_to_dense_max_mm": round(float(dd.max()), 2),
     "vertex_order_checksum": int(np.round(co * 100).astype(np.int64).sum() % 1_000_000_007),
 }
+# face fidelity: how far the dense head surface is from the template surface (corner-cutting shows here)
+import trimesh
+tri = [f[:3] for f in faces] + [[f[0], f[2], f[3]] for f in faces if len(f) == 4]
+tm = trimesh.Trimesh(co, np.array(tri), process=False)
+hd = dense[(dense[:, 1] < dense[:, 1].min() + 230) & (dense[:, 2] > 430)]
+hd = hd[np.random.default_rng(0).choice(len(hd), min(len(hd), 15000), replace=False)]
+_, hdist, _ = trimesh.proximity.closest_point(tm, hd)
+report["head_dense_to_template_p95_mm"] = round(float(np.percentile(hdist, 95)), 2)
+report["head_dense_to_template_max_mm"] = round(float(hdist.max()), 2)
 checks = {
     "watertight_manifold": non_manifold == 0 and boundary == 0,
-    "faces_4k_6k": 4000 <= nf <= 6500,
+    "faces_near_target": 0.7 * target <= nf <= 1.3 * target,
+    "head_p95_dev_le_1.5mm": report["head_dense_to_template_p95_mm"] <= 1.5,
     "symmetry_le_0.5mm": sym_err <= 0.5,
     "shape_mean_dev_le_2mm": report["dist_to_dense_mean_mm"] <= 2.0,
 }

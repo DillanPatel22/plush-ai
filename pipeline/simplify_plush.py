@@ -30,6 +30,9 @@ Pb = taubin(a.body_iters); Ph = taubin(a.head_iters)
 nose_y = V0[:, 1].min()
 w = 1.0 / (1.0 + np.exp(-((nose_y + a.head_end) - V0[:, 1]) / 30.0))          # 1 = head
 V = Ph * w[:, None] + Pb * (1 - w[:, None])
+# paws: fade the smoothing out over the bottom 25 mm so the flat sole and its rim stay clean (no folds)
+ws = np.clip(V0[:, 2] / 25.0, 0, 1)[:, None]
+V = V0 + (V - V0) * ws
 # soles: vertices that were on the ground stay on the ground
 sole = V0[:, 2] < 0.5
 V[sole, 2] = 0.0

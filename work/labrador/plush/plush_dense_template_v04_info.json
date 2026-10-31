@@ -1,0 +1,19 @@
+{
+ "ear_footprint_cells": 3576,
+ "ear_axis_z_mm": 653.7,
+ "ear_mean_thickness_removed_mm": 12.0,
+ "ear_max_thickness_removed_mm": 52.9,
+ "keep_height": true,
+ "close_head_mm": 6.0,
+ "pitch_mm": 3.0,
+ "close_mm": 12.0,
+ "round_head_mm": 4.0,
+ "round_body_mm": 10.0,
+ "head_end_mm": 230.0,
+ "sole_mm": 14.0,
+ "vertices": 159070,
+ "faces": 318136,
+ "watertight": true,
+ "volume_l": 41.3,
+ "seconds": 21
+}

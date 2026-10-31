@@ -1,0 +1,79 @@
+{
+ "pieces": {
+  "P01": {
+   "area_off_30deg_pct": 3.1,
+   "area_off_60deg_pct": 0.0,
+   "median_error_deg": 3.0
+  },
+  "P02": {
+   "area_off_30deg_pct": 13.1,
+   "area_off_60deg_pct": 0.1,
+   "median_error_deg": 5.0
+  },
+  "P04": {
+   "area_off_30deg_pct": 14.6,
+   "area_off_60deg_pct": 0.9,
+   "median_error_deg": 4.0
+  },
+  "P05": {
+   "area_off_30deg_pct": 33.0,
+   "area_off_60deg_pct": 21.6,
+   "median_error_deg": 20.0
+  },
+  "P07": {
+   "area_off_30deg_pct": 41.0,
+   "area_off_60deg_pct": 26.0,
+   "median_error_deg": 25.0
+  },
+  "P08": {
+   "area_off_30deg_pct": 97.5,
+   "area_off_60deg_pct": 95.1,
+   "median_error_deg": 90.0
+  },
+  "P10": {
+   "area_off_30deg_pct": 95.8,
+   "area_off_60deg_pct": 95.8,
+   "median_error_deg": 90.0
+  },
+  "P12": {
+   "area_off_30deg_pct": 7.3,
+   "area_off_60deg_pct": 1.5,
+   "median_error_deg": 20.0
+  },
+  "P15": {
+   "area_off_30deg_pct": 30.5,
+   "area_off_60deg_pct": 3.4,
+   "median_error_deg": 26.0
+  }
+ },
+ "regions": {
+  "body side": {
+   "area_off_30deg_pct": 9.2,
+   "area_off_60deg_pct": 2.3
+  },
+  "head": {
+   "area_off_30deg_pct": 6.5,
+   "area_off_60deg_pct": 0.8
+  },
+  "chest": {
+   "area_off_30deg_pct": 98.0,
+   "area_off_60deg_pct": 82.8
+  },
+  "legs": {
+   "area_off_30deg_pct": 61.4,
+   "area_off_60deg_pct": 34.3
+  },
+  "soles (pads, no pile)": {
+   "area_off_30deg_pct": 96.7,
+   "area_off_60deg_pct": 94.9
+  },
+  "tail": {
+   "area_off_30deg_pct": 9.3,
+   "area_off_60deg_pct": 2.3
+  },
+  "underbody": {
+   "area_off_30deg_pct": 41.8,
+   "area_off_60deg_pct": 24.6
+  }
+ }
+}

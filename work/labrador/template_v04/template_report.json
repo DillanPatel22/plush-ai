@@ -1,0 +1,20 @@
+{
+ "faces": 10994,
+ "quads_pct": 98.8,
+ "vertices": 10971,
+ "non_manifold_edges": 0,
+ "boundary_edges": 0,
+ "symmetry_max_err_mm": 0.0,
+ "dist_to_dense_mean_mm": 1.1,
+ "dist_to_dense_max_mm": 4.58,
+ "vertex_order_checksum": 977406064,
+ "head_dense_to_template_p95_mm": 1.36,
+ "head_dense_to_template_max_mm": 4.69,
+ "checks": {
+  "watertight_manifold": true,
+  "faces_near_target": true,
+  "head_p95_dev_le_1.5mm": true,
+  "symmetry_le_0.5mm": true,
+  "shape_mean_dev_le_2mm": true
+ }
+}

@@ -3,6 +3,26 @@ import igl
 import numpy as np
 
 
+def fix_slivers(V, F, rel=1e-3, max_rounds=20):
+    """Seam straightening can leave a few flat (collinear) triangles; LSCM/ARAP cotangent weights blow up on
+    them. Nudge the vertex opposite each sliver's longest edge towards its one-ring centre (sub-0.1 mm moves)."""
+    V = np.array(V, float); F = np.asarray(F, np.int64)
+    nbr = [[] for _ in range(len(V))]
+    for a, b, c in F:
+        nbr[a] += [b, c]; nbr[b] += [a, c]; nbr[c] += [a, b]
+    def areas():
+        return 0.5 * np.linalg.norm(np.cross(V[F[:, 1]] - V[F[:, 0]], V[F[:, 2]] - V[F[:, 0]]), axis=1)
+    moved = 0
+    for _ in range(max_rounds):
+        A = areas(); bad = np.where(A < rel * A.mean())[0]
+        if not len(bad): break
+        for fi in bad:
+            P = V[F[fi]]; L = np.linalg.norm(P[[1, 2, 0]] - P, axis=1)       # edge i: vertex i -> i+1
+            v = F[fi][(np.argmax(L) + 2) % 3]                                  # opposite the longest edge
+            c = V[list(set(nbr[v]))].mean(0); V[v] += 0.1 * (c - V[v]); moved += 1
+    return V, moved
+
+
 def flatten(V, F, iters=200):
     V = np.ascontiguousarray(V, dtype=np.float64); F = np.ascontiguousarray(F, dtype=np.int64)
     bnd = igl.boundary_loop(F)

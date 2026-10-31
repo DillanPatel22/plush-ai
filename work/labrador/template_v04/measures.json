@@ -1,0 +1,30 @@
+{
+ "withers_height_mm": 559.0,
+ "elbow_height_mm": 242.0,
+ "body_length_mm": 669.0,
+ "length_to_height": 1.197,
+ "elbow_over_height": 0.433,
+ "nose_to_chest_front_mm": 190.0,
+ "front_leg_y_mm": [
+  303.9,
+  375.9
+ ],
+ "rear_leg_y_mm": [
+  770.9,
+  874.9
+ ],
+ "landmarks_px": {
+  "withers": [
+   415,
+   170
+  ],
+  "elbow": [
+   407,
+   487
+  ],
+  "chest_front": 200,
+  "buttock": 869,
+  "ground": 728
+ },
+ "nose_y0": 1.93285
+}

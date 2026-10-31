@@ -7,3 +7,5 @@ Git tags can't be pushed from the build sessions, so versions are recorded here 
 | dog-base-v0.1-candidate | 6b57af0 | Labrador plush-shaped base template, ears on, exact symmetry |
 | dog-base-v0.3-candidate | 967f1cd | Ears off the body mesh, muscles simplified for plush, legs/tail filled to 25 mm |
 | labrador-pattern-v1 | 967f1cd | Labrador standing, size M (350 mm): 20 pieces, laser DXF, 1:1 PDF, bilingual assembly sheet, for a fleece mock-up |
+| dog-base-v0.4-candidate | (this commit) | Face fixed: skull width restored, ear-root cushion, head profile fitted to the side photo, denser mesh; face check within 5.3 % of the photos |
+| labrador-pattern-v1.1 | (this commit) | Same v1 seam layout regenerated on the v0.4 shape. Not for cutting: seam layout v2 (separate legs and chest, head darts) pending craftsman approval |

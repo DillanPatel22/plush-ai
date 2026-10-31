@@ -1,0 +1,7 @@
+{
+ "outline_dev_p90_mm": 1.31,
+ "outline_dev_max_mm": 4.0,
+ "before_dev_p90_mm": 20.59,
+ "max_vertex_move_mm": 33.0,
+ "vertices": 10971
+}

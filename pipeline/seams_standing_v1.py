@@ -19,7 +19,7 @@ from scipy.spatial import cKDTree
 src, out = sys.argv[1], Path(sys.argv[2]); out.mkdir(parents=True, exist_ok=True)
 T = trimesh.load(src, process=False)
 m = trimesh.Trimesh(T.vertices, T.faces, process=False)        # triangulate quads
-for _ in range(2):
+while len(m.faces) < 60000:                                     # ~4 mm triangles at real-dog scale
     v, f = trimesh.remesh.subdivide(m.vertices, m.faces); m = trimesh.Trimesh(v, f, process=False)
 C = m.triangles_center; x, y, z = C.T; ax = np.abs(x)
 # smoothed normals (from a heavily smoothed copy) so normal-based seams follow the big shape, not small bumps
@@ -115,7 +115,8 @@ for (u_, w_), (f1, f2) in zip(ef, fa):
 nb_seam = {}
 for u_, w_ in seam_edge:
     nb_seam.setdefault(u_, []).append(w_); nb_seam.setdefault(w_, []).append(u_)
-movable = [v_ for v_, nb_ in nb_seam.items() if len(nb_) == 2 and nlab[v_] == 2]
+# sole rims sit on a sharp edge: projecting smoothed points there flips triangles, so they stay put
+movable = [v_ for v_, nb_ in nb_seam.items() if len(nb_) == 2 and nlab[v_] == 2 and m.vertices[v_, 2] > 4.0]
 Vs = m.vertices.copy()
 for it in range(30):
     newV = Vs.copy()

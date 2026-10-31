@@ -1,0 +1,80 @@
+{
+ "P01": {
+  "name": "P01 head gusset",
+  "faces": 1068,
+  "area_cm2_real": 167.9,
+  "euler": 1
+ },
+ "P02": {
+  "name": "P02 side head R",
+  "faces": 3492,
+  "area_cm2_real": 489.9,
+  "euler": 1
+ },
+ "P03": {
+  "name": "P03 side head L",
+  "faces": 3492,
+  "area_cm2_real": 489.9,
+  "euler": 1
+ },
+ "P04": {
+  "name": "P04 chin gusset",
+  "faces": 1038,
+  "area_cm2_real": 103.1,
+  "euler": 1
+ },
+ "P05": {
+  "name": "P05 body side R",
+  "faces": 27353,
+  "area_cm2_real": 3247.7,
+  "euler": 1
+ },
+ "P06": {
+  "name": "P06 body side L",
+  "faces": 27353,
+  "area_cm2_real": 3247.7,
+  "euler": 1
+ },
+ "P07": {
+  "name": "P07 underbody gusset",
+  "faces": 18598,
+  "area_cm2_real": 2290.3,
+  "euler": 1
+ },
+ "P08": {
+  "name": "P08 sole front R",
+  "faces": 337,
+  "area_cm2_real": 40.5,
+  "euler": 1
+ },
+ "P09": {
+  "name": "P09 sole front L",
+  "faces": 337,
+  "area_cm2_real": 40.5,
+  "euler": 1
+ },
+ "P10": {
+  "name": "P10 sole rear R",
+  "faces": 307,
+  "area_cm2_real": 36.5,
+  "euler": 1
+ },
+ "P11": {
+  "name": "P11 sole rear L",
+  "faces": 307,
+  "area_cm2_real": 36.5,
+  "euler": 1
+ },
+ "P12": {
+  "name": "P12 tail R",
+  "faces": 2035,
+  "area_cm2_real": 260.2,
+  "euler": 1
+ },
+ "P13": {
+  "name": "P13 tail L",
+  "faces": 2035,
+  "area_cm2_real": 260.2,
+  "euler": 1
+ }
+}

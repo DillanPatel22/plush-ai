@@ -1,0 +1,7 @@
+{
+ "body_iters": 500,
+ "head_iters": 12,
+ "mean_move_mm": 3.98,
+ "max_move_mm": 15.43,
+ "volume_change_pct": 5.97
+}
