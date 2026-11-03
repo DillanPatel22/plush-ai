@@ -1,0 +1,21 @@
+{
+ "breed": "Labrador Retriever (yellow)",
+ "status": "starting values for the first sample; the workshop sets the final numbers",
+ "plush_size_mm": 350,
+ "sources": {
+  "coat": "AKC standard: 'short, straight and very dense, giving a fairly hard feeling to the hand'; 'soft silky coats ... not typical'",
+  "tail": "AKC standard: 'clothed thickly all around with the Labrador's short, dense coat', 'free from feathering'",
+  "colour": "AKC standard: yellows 'with variations in shading on the ears, back, and underparts'; colours here are read from the customer's photos via the photo-textured 3D model"
+ },
+ "stock_fur": "white acrylic pile on knitted polyester backing, straight and dense (not silky), pile at least 12 mm so the longest zone can be trimmed to length",
+ "trim_zones": [
+  {"zone": "muzzle", "length_mm": 4, "colour": [230, 120, 90], "note": "shortest, velvety, like the competitors' short-pile muzzles"},
+  {"zone": "head and ears", "length_mm": 5, "colour": [240, 190, 70], "note": "short and smooth; ears both sides"},
+  {"zone": "legs", "length_mm": 6, "colour": [120, 170, 220], "note": "short, brushed downwards"},
+  {"zone": "body", "length_mm": 8, "colour": [150, 200, 120], "note": "standard coat; brushed back and down"},
+  {"zone": "neck and chest", "length_mm": 10, "colour": [190, 140, 210], "note": "slightly fuller at the neck and chest"},
+  {"zone": "tail", "length_mm": 8, "colour": [110, 200, 200], "note": "thick all round, no feathering (otter tail)"}
+ ],
+ "size_rule": "fur lengths scale with plush size; at 350 mm the thinnest lower-leg and tail sections are raised to the 25 mm tube minimum (plush look); from about 430 mm the dog keeps its true proportions everywhere",
+ "markings_rule": "markings and shading are airbrushed on the white stock fur from the colour guide; where a customer's dog has a crisp marking edge (white bib, blaze, socks) the nearest seam is moved onto that edge so the colour change hides it"
+}

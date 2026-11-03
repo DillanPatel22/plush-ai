@@ -4,6 +4,9 @@ off the head a little more towards the tip, as a sewn ear with a pleated base do
 positions read from the photos, and yellow-Labrador colouring.
 
 Usage: python3 attach_ears_preview.py canonical.obj ears_dir out.obj face_points.json k
+       [--colours vertex_colours.npy --ear-json ear.json] [--seams face_labels.npy]
+--colours: per-vertex coat colours (colour_map.py) instead of one flat colour; --seams: face labels of a seam
+layout on this same mesh, drawn as slightly darker lines so the seams can be seen on the preview.
 Writes out.obj (shape only) and out.ply (vertex colours, for rendering).
 """
 import json, sys
@@ -13,12 +16,19 @@ from shapely.geometry import Polygon, Point
 from scipy.spatial import Delaunay, cKDTree
 import scipy.sparse as sp
 
-T = trimesh.load(sys.argv[1], process=False); E = Path(sys.argv[2]); out = Path(sys.argv[3])
-fp = json.load(open(sys.argv[4])) if len(sys.argv) > 4 else None; k = float(sys.argv[5]) if len(sys.argv) > 5 else None
+def opt(name):
+    return sys.argv[sys.argv.index(name) + 1] if name in sys.argv else None
+pos = [a for i, a in enumerate(sys.argv[1:], 1) if not a.startswith("--") and not sys.argv[i - 1].startswith("--")]
+T = trimesh.load(pos[0], process=False); E = Path(pos[1]); out = Path(pos[2])
+fp = json.load(open(pos[3])) if len(pos) > 3 else None; k = float(pos[4]) if len(pos) > 4 else None
+VCOL = np.load(opt("--colours")) if opt("--colours") else None
+EARJ = json.load(open(opt("--ear-json"))) if opt("--ear-json") else {}
+SEAMS = np.load(opt("--seams")) if opt("--seams") else None
 outline = np.load(E / "ear_outline_mm.npy")
 att_on = np.load(E / "ear_attach_on_template.npy")
 GAP0, FLARE, FLARE_MAX, STEP = 3.0, 0.5, 50.0, 3.0
 COAT, EAR, EYE, NOSE = (232, 196, 140), (214, 168, 108), (52, 32, 22), (62, 48, 46)
+if EARJ.get("ear_rgb"): EAR = tuple(EARJ["ear_rgb"])
 ray = trimesh.ray.ray_triangle.RayMeshIntersector(T)
 
 ya, za = att_on[:, 1], att_on[:, 2]
@@ -84,7 +94,32 @@ nose = nose_f
 meshes, cols = [], []
 for i, (m, c) in enumerate(parts):
     col = np.tile(np.r_[c, 255], (len(m.vertices), 1)).astype(np.uint8)
+    if i == 0 and VCOL is not None:
+        col[:, :3] = VCOL
     meshes.append(m); cols.append(col)
+if SEAMS is not None and VCOL is not None:                       # seams drawn as thin cords just above the fur
+    tm = trimesh.Trimesh(T.vertices, T.faces, process=False); vn = tm.vertex_normals
+    fa, fe = tm.face_adjacency, tm.face_adjacency_edges
+    se = fe[SEAMS[fa[:, 0]] != SEAMS[fa[:, 1]]]
+    R_ = 1.3; ring = 6; ang = np.linspace(0, 2 * np.pi, ring, endpoint=False)
+    allv, allf = [], []; off = 0
+    for a_, b_ in se:
+        p0 = T.vertices[a_] + vn[a_] * 0.8; p1 = T.vertices[b_] + vn[b_] * 0.8
+        d_ = p1 - p0; L_ = np.linalg.norm(d_)
+        if L_ < 1e-6: continue
+        d_ /= L_; u_ = np.cross(d_, [0, 0, 1.0]);
+        if np.linalg.norm(u_) < 1e-3: u_ = np.cross(d_, [0, 1.0, 0])
+        u_ /= np.linalg.norm(u_); w_ = np.cross(d_, u_)
+        circ = (np.cos(ang)[:, None] * u_ + np.sin(ang)[:, None] * w_) * R_
+        allv += [p0 + circ, p1 + circ]
+        for j in range(ring):
+            j2 = (j + 1) % ring
+            allf += [[off + j, off + j2, off + ring + j], [off + j2, off + ring + j2, off + ring + j]]
+        off += 2 * ring
+    if allv:
+        cord = trimesh.Trimesh(np.vstack(allv), np.array(allf), process=False)
+        ccol = np.tile(np.r_[(np.median(VCOL, 0) * 0.62).astype(np.uint8), 255], (len(cord.vertices), 1)).astype(np.uint8)
+        meshes.append(cord); cols.append(ccol)
 allm = trimesh.util.concatenate(meshes)
 allm.export(out)
 cm = trimesh.Trimesh(allm.vertices, allm.faces, vertex_colors=np.vstack(cols), process=False)

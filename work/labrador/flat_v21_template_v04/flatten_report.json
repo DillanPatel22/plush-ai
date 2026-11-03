@@ -1,0 +1,127 @@
+{
+ "scale": 0.4075,
+ "plush_nose_to_tail_mm": 350.0,
+ "layout": "standing v2.1 (proposal, competitor-style legs)",
+ "pieces": {
+  "P01": {
+   "name": "head gusset",
+   "faces": 1066,
+   "area_3d_cm2": 27.8,
+   "area_dev_p95": 0.049,
+   "len_dev_p95": 0.029,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 0,
+   "outline_valid": true,
+   "boundary_len_ratio": 1.016
+  },
+  "P02": {
+   "name": "side head R",
+   "faces": 2584,
+   "area_3d_cm2": 63.8,
+   "area_dev_p95": 0.063,
+   "len_dev_p95": 0.039,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 0,
+   "outline_valid": true,
+   "boundary_len_ratio": 1.028
+  },
+  "P04": {
+   "name": "chin gusset",
+   "faces": 1028,
+   "area_3d_cm2": 16.7,
+   "area_dev_p95": 0.077,
+   "len_dev_p95": 0.046,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 0,
+   "outline_valid": true,
+   "boundary_len_ratio": 0.977
+  },
+  "P05": {
+   "name": "muzzle side R",
+   "faces": 914,
+   "area_3d_cm2": 17.5,
+   "area_dev_p95": 0.069,
+   "len_dev_p95": 0.043,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 0,
+   "outline_valid": true,
+   "boundary_len_ratio": 1.04
+  },
+  "P07": {
+   "name": "body side R (with outside of legs)",
+   "faces": 25136,
+   "area_3d_cm2": 490.7,
+   "area_dev_p95": 0.09,
+   "len_dev_p95": 0.055,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 40,
+   "outline_valid": true,
+   "boundary_len_ratio": 0.991
+  },
+  "P09": {
+   "name": "chest R",
+   "faces": 3539,
+   "area_3d_cm2": 75.6,
+   "area_dev_p95": 0.071,
+   "len_dev_p95": 0.049,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 0,
+   "outline_valid": true,
+   "boundary_len_ratio": 0.976
+  },
+  "P11": {
+   "name": "underbody R (belly, inside of legs)",
+   "faces": 8070,
+   "area_3d_cm2": 164.6,
+   "area_dev_p95": 0.086,
+   "len_dev_p95": 0.051,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 40,
+   "outline_valid": true,
+   "boundary_len_ratio": 0.983
+  },
+  "P13": {
+   "name": "sole front R",
+   "faces": 299,
+   "area_3d_cm2": 6.0,
+   "area_dev_p95": 0.004,
+   "len_dev_p95": 0.003,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 0,
+   "outline_valid": true,
+   "boundary_len_ratio": 1.0
+  },
+  "P15": {
+   "name": "sole hind R",
+   "faces": 252,
+   "area_3d_cm2": 5.1,
+   "area_dev_p95": 0.002,
+   "len_dev_p95": 0.001,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 0,
+   "outline_valid": true,
+   "boundary_len_ratio": 1.0
+  },
+  "P17": {
+   "name": "tail R",
+   "faces": 2035,
+   "area_3d_cm2": 43.2,
+   "area_dev_p95": 0.126,
+   "len_dev_p95": 0.071,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 0,
+   "outline_valid": true,
+   "boundary_len_ratio": 1.082
+  }
+ }
+}

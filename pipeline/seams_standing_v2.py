@@ -10,7 +10,12 @@ Changes from v1, all to make the fabric's pile run the way a Labrador's coat doe
     (sharper stop, fuller cheeks, a natural place to set the eyes)
 Unchanged: head gusset, chin gusset, body sides with centre-back seam, two-piece tail, soles, two-layer ears.
 
-Usage: python3 seams_standing_v2.py template_medium.obj out_dir
+v2.1 (--legs body, the default since 3 Nov 2026): legs are built the way Cuddle Clones and Dragonmoss build them,
+as part of the body sides (outside of each leg) and the underbody halves (inside of each leg), so the legs read as
+plush legs with no ring seam at the elbow or knee. The chest panel is cut in two halves with a centre seam, as on
+the competitors' short-coated dogs. --legs separate keeps the v2 leg pieces.
+
+Usage: python3 seams_standing_v2.py template_medium.obj out_dir [--legs body|separate]
 """
 import json, sys
 from pathlib import Path
@@ -19,6 +24,8 @@ import scipy.sparse as sp
 from scipy.spatial import cKDTree
 
 src, out = sys.argv[1], Path(sys.argv[2]); out.mkdir(parents=True, exist_ok=True)
+LEGS = sys.argv[sys.argv.index("--legs") + 1] if "--legs" in sys.argv else "body"
+assert LEGS in ("body", "separate")
 T = trimesh.load(src, process=False)
 m = trimesh.Trimesh(T.vertices, T.faces, process=False)        # triangulate quads
 while len(m.faces) < 60000:                                     # ~4 mm triangles at real-dog scale
@@ -27,6 +34,16 @@ C = m.triangles_center; x, y, z = C.T; ax = np.abs(x)
 # smoothed normals (from a heavily smoothed copy) so normal-based seams follow the big shape, not small bumps
 ms_ = m.copy(); trimesh.smoothing.filter_taubin(ms_, lamb=0.5, nu=0.53, iterations=40)
 N = ms_.face_normals
+if LEGS == "body":
+    # v2.1: seams that follow the body's turning (chest panel edge, inside/outside of the legs, belly edge) are
+    # defined on a much smoother normal field, so they run as long clean curves instead of tracing every bump
+    adj0 = m.face_adjacency
+    Af = sp.coo_matrix((np.ones(len(adj0) * 2), (np.r_[adj0[:, 0], adj0[:, 1]], np.r_[adj0[:, 1], adj0[:, 0]])),
+                       shape=(len(m.faces),) * 2).tocsr()
+    Df = np.asarray(Af.sum(1)).ravel()
+    Ns = N.copy()
+    for _ in range(120): Ns = 0.5 * Ns + 0.5 * (Af @ Ns) / Df[:, None]
+    N = Ns / np.linalg.norm(Ns, axis=1, keepdims=True)
 y0 = m.vertices[:, 1].min()
 y = y - y0                                                     # nose tip at 0
 
@@ -64,6 +81,7 @@ chest = body & (y < 330) & (N[:, 1] < -0.2) & (ax < cw) & (z < 480) & (z > 230)
 FRONT_CUT, HIND_CUT = 235.0, 260.0                 # elbow and stifle heights on this template (real mm)
 cut_z = np.where(front_leg, FRONT_CUT, np.where(rear_leg, HIND_CUT, -1.0))
 lower_leg = body & (front_leg | rear_leg) & (z < cut_z) & ~sole
+if LEGS == "body": lower_leg[:] = False            # v2.1: no leg pieces; legs belong to body sides and underbody
 leg_in = lower_leg & (N[:, 0] * np.sign(x) < -0.05)
 leg_out = lower_leg & ~leg_in
 under = ((inner_leg & ~lower_leg) | belly | chest) & ~sole
@@ -71,7 +89,11 @@ label[body & ~sole & (x >= 0)] = 5; label[body & ~sole & (x < 0)] = 6
 label[under & (x >= 0)] = 10; label[under & (x < 0)] = 11          # belly halves: centre seam underneath
 # chest panel as a bib: every forward-facing surface of the chest and the fronts of the shoulders down to the elbows
 bib = body & (y < 360) & (N[:, 1] < -0.3) & (z < 520) & (z > FRONT_CUT - 5) & ~sole & ~lower_leg
-label[bib | (chest & ~sole & ~lower_leg)] = 9
+chest_p = bib | (chest & ~sole & ~lower_leg)
+if LEGS == "body":
+    label[chest_p & (x >= 0)] = 9; label[chest_p & (x < 0)] = 26        # chest halves, centre seam (as competitors)
+else:
+    label[chest_p] = 9
 R_ = x >= 0
 label[leg_out & front_leg & R_] = 14; label[leg_out & front_leg & ~R_] = 15
 label[leg_in & front_leg & R_] = 16; label[leg_in & front_leg & ~R_] = 17
@@ -108,7 +130,7 @@ for _ in range(8):
         vals, cnt = np.unique(nb, return_counts=True)
         if vals[np.argmax(cnt)] != label[i] and cnt.max() > 0.6 * len(nb): new[i] = vals[np.argmax(cnt)]
     label = new
-swap = {2: 3, 3: 2, 21: 22, 22: 21, 5: 6, 6: 5, 10: 11, 11: 10, 14: 15, 15: 14, 16: 17, 17: 16, 18: 19, 19: 18, 24: 25, 25: 24,
+swap = {2: 3, 3: 2, 21: 22, 22: 21, 5: 6, 6: 5, 10: 11, 11: 10, **({9: 26, 26: 9} if LEGS == "body" else {}), 14: 15, 15: 14, 16: 17, 17: 16, 18: 19, 19: 18, 24: 25, 25: 24,
         30: 31, 31: 30, 32: 33, 33: 32, 12: 13, 13: 12}
 mir = cKDTree(C).query(C * [-1, 1, 1])[1]
 neg = x < 0
@@ -174,6 +196,14 @@ PIECES = {1: ("P01", "head gusset", None), 2: ("P02", "side head R", None), 3: (
           24: ("P18", "hind leg inner R", None), 25: ("P19", "hind leg inner L", "P18"),
           30: ("P20", "sole front R", None), 31: ("P21", "sole front L", "P20"), 32: ("P22", "sole hind R", None),
           33: ("P23", "sole hind L", "P22"), 12: ("P24", "tail R", None), 13: ("P25", "tail L", "P24")}
+if LEGS == "body":
+    PIECES = {1: ("P01", "head gusset", None), 2: ("P02", "side head R", None), 3: ("P03", "side head L", "P02"),
+              4: ("P04", "chin gusset", None), 21: ("P05", "muzzle side R", None), 22: ("P06", "muzzle side L", "P05"),
+              5: ("P07", "body side R (with outside of legs)", None), 6: ("P08", "body side L (with outside of legs)", "P07"),
+              9: ("P09", "chest R", None), 26: ("P10", "chest L", "P09"),
+              10: ("P11", "underbody R (belly, inside of legs)", None), 11: ("P12", "underbody L (belly, inside of legs)", "P11"),
+              30: ("P13", "sole front R", None), 31: ("P14", "sole front L", "P13"), 32: ("P15", "sole hind R", None),
+              33: ("P16", "sole hind L", "P15"), 12: ("P17", "tail R", None), 13: ("P18", "tail L", "P17")}
 names = {L: f"{pid} {nm}" for L, (pid, nm, _) in PIECES.items()}
 report = {}
 for L, (pid, nm, mirror_of) in PIECES.items():
@@ -187,13 +217,13 @@ np.save(out / "face_labels.npy", label)
 m.export(out / "subdivided.obj")
 # coloured preview mesh
 COL = {1: (230, 80, 60), 2: (70, 140, 220), 3: (70, 140, 220), 4: (240, 170, 40), 21: (250, 120, 170), 22: (250, 120, 170),
-       5: (120, 190, 90), 6: (120, 190, 90), 9: (250, 220, 90), 10: (170, 100, 200), 11: (170, 100, 200), 14: (40, 120, 90), 15: (40, 120, 90),
+       5: (120, 190, 90), 6: (120, 190, 90), 9: (250, 220, 90), 26: (250, 220, 90), 10: (170, 100, 200), 11: (170, 100, 200), 14: (40, 120, 90), 15: (40, 120, 90),
        16: (150, 220, 200), 17: (150, 220, 200), 18: (200, 120, 60), 19: (200, 120, 60), 24: (240, 190, 150), 25: (240, 190, 150),
        30: (90, 90, 90), 31: (90, 90, 90), 32: (90, 90, 90), 33: (90, 90, 90), 12: (60, 190, 190), 13: (60, 190, 190)}
 fc = np.array([COL.get(int(l), (0, 0, 0)) for l in label], np.uint8)
 vis = m.copy(); vis.visual.face_colors = np.c_[fc, np.full(len(label), 255, np.uint8)]
 vis.export(out / "labelled.ply")
-json.dump({"layout": "standing v2 (proposal)", "pieces": report}, open(out / "pieces.json", "w"), indent=1)
+json.dump({"layout": "standing v2.1 (proposal, competitor-style legs)" if LEGS == "body" else "standing v2 (proposal)", "pieces": report}, open(out / "pieces.json", "w"), indent=1)
 for k, v in report.items(): print(k, v)
 bad = [k for k, v in report.items() if v["euler"] != 1]
 print("RESULT:", "PASS" if not bad else f"CHECK topology {bad} (euler != 1 means not a single disk)")

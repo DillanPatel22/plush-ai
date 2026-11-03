@@ -1,0 +1,75 @@
+{
+ "zones": [
+  {
+   "zone": 1,
+   "hex": "#e2d2bc",
+   "rgb": [
+    226,
+    210,
+    188
+   ],
+   "area_share": 0.395,
+   "mostly_on": [
+    "P09 chest R",
+    "P11 underbody R (belly, inside of legs)",
+    "P07 body side R (with outside of legs)"
+   ]
+  },
+  {
+   "zone": 2,
+   "hex": "#dbc4a5",
+   "rgb": [
+    219,
+    196,
+    165
+   ],
+   "area_share": 0.286,
+   "mostly_on": [
+    "P04 chin gusset",
+    "P09 chest R",
+    "P07 body side R (with outside of legs)"
+   ]
+  },
+  {
+   "zone": 3,
+   "hex": "#ccae89",
+   "rgb": [
+    204,
+    174,
+    137
+   ],
+   "area_share": 0.229,
+   "mostly_on": [
+    "P04 chin gusset",
+    "P02 side head R",
+    "P01 head gusset"
+   ]
+  },
+  {
+   "zone": 4,
+   "hex": "#b4926d",
+   "rgb": [
+    180,
+    146,
+    109
+   ],
+   "area_share": 0.091,
+   "mostly_on": [
+    "P05 muzzle side R",
+    "P01 head gusset",
+    "P02 side head R"
+   ]
+  }
+ ],
+ "ear_rgb": [
+  179,
+  138,
+  100
+ ],
+ "pad_rgb": [
+  58,
+  48,
+  44
+ ],
+ "note": "colours from the photo-textured 3D model; baked paw/underside shadow lifted; paw pads separate"
+}

@@ -9,7 +9,9 @@ Reports, per piece and per body region, the share of area whose pile is more tha
 
 Usage: python3 nap_check.py flat_dir measures.json plush_nose_to_tail_mm out.json [--best]
 --best: rotate each piece so its area-weighted coat direction points down the roll (the rule for layout v2);
-without it, the v1 export's rule (legs down, everything else nose to tail).
+--visible: choose each piece's pile direction (any angle) to minimise the area more than 30 degrees off, weighted by
+how much each region is seen on the finished plush (belly and inner thighs count for little, the face for most);
+without either, the v1 export's rule (legs down, everything else nose to tail).
 """
 import json, math, sys
 from pathlib import Path
@@ -63,10 +65,19 @@ for f in files:
     def to2d(f3):
         f3 = f3 - (f3 * n).sum(1, keepdims=True) * n; return np.einsum("nij,nj->ni", J, f3)
     want, reg = coat(C, n, y0)
-    f2 = (to2d(want if "--best" in sys.argv else export_fur(C)) * A[:, None]).sum(0)
+    f2 = (to2d(want if ("--best" in sys.argv or "--visible" in sys.argv) else export_fur(C)) * A[:, None]).sum(0)
     rot = -math.pi / 2 - math.atan2(f2[1], f2[0])                    # export: area-weighted fur points down
-    nap = np.array([math.cos(-math.pi / 2 - rot), math.sin(-math.pi / 2 - rot)])   # pile direction in the piece's uv
     w2 = to2d(want); w2 /= np.linalg.norm(w2, axis=1, keepdims=True) + 1e-12
+    if "--visible" in sys.argv:
+        VIS = {"head": 3.0, "chest & shoulder fronts": 1.5, "legs": 1.5, "body side": 1.0, "tail": 1.0, "underbody": 0.2}
+        wv = A * np.array([VIS.get(r, 0.0) for r in reg])
+        def cost(r_):
+            nap_ = np.array([math.cos(-math.pi / 2 - r_), math.sin(-math.pi / 2 - r_)])
+            e_ = np.degrees(np.arccos(np.clip(w2 @ nap_, -1, 1)))
+            return (wv * np.clip((e_ - 15) / 30, 0, 1)).sum()         # 0 below 15 deg, full cost from 45 deg
+        cand = rot + np.deg2rad(np.arange(-90, 91, 2))
+        rot = float(cand[np.argmin([cost(r_) for r_ in cand])])
+    nap = np.array([math.cos(-math.pi / 2 - rot), math.sin(-math.pi / 2 - rot)])   # pile direction in the piece's uv
     err = np.degrees(np.arccos(np.clip(w2 @ nap, -1, 1)))
     rep["pieces"][f.stem] = {"area_off_30deg_pct": round(100 * A[err > 30].sum() / A.sum(), 1),
                              "area_off_60deg_pct": round(100 * A[err > 60].sum() / A.sum(), 1),
