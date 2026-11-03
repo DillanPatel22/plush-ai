@@ -4,6 +4,11 @@ Usage: python3 ear_from_trace.py ear_trace.json side_ref.png template.obj wither
        python3 ear_from_trace.py ear_trace.json side_ref.png - withers_mm out_dir     (outline only, before plushify)
 Writes ear_outline_rel.npy (Y from the nose tip, Z from the ground) for plushify's ear removal, and with a
 template also the template-frame outline and the attachment line on the head.
+
+A trace may instead give "points_mm": the outline read off a mm-gridded side view of the aligned 3D model (Y from
+the nose tip, Z from the ground, real-dog scale); the photo argument is then not used.
+Optional trace keys: "attach_below_top_mm" (ear root under the skull top, default 23 = Labrador drop ear) and
+"expect_mm" {"length": [lo, hi], "width": [lo, hi], "attach": [lo, hi]} for the plausibility check.
 """
 import json, sys
 from pathlib import Path
@@ -14,13 +19,16 @@ import align_measure as am
 
 tr = json.load(open(sys.argv[1])); ref = sys.argv[2]; T = None if sys.argv[3] == "-" else trimesh.load(sys.argv[3], process=False)
 withers = float(sys.argv[4]); out = Path(sys.argv[5]); out.mkdir(parents=True, exist_ok=True)
-mask = am.photo_mask(ref); res, _ = am.measure_mask(mask, 1.0)
-s = withers / res["withers_height_mm"]                          # mm per photo pixel
-cols = np.where(mask.any(0))[0]; nose_px = cols.min(); ground_px = res["landmarks_px"]["ground"]
-ox, oy = tr["crop_origin_px"]; zf = tr["crop_zoom"]
-P = np.array(tr["points_crop"], float)
-px = ox + P[:, 0] / zf; py = oy + P[:, 1] / zf
-y_mm = (px - nose_px) * s; z_mm = (ground_px - py) * s
+if "points_mm" in tr:
+    s = 1.0; P = np.array(tr["points_mm"], float); y_mm, z_mm = P[:, 0], P[:, 1]
+else:
+    mask = am.photo_mask(ref); res, _ = am.measure_mask(mask, 1.0)
+    s = withers / res["withers_height_mm"]                          # mm per photo pixel
+    cols = np.where(mask.any(0))[0]; nose_px = cols.min(); ground_px = res["landmarks_px"]["ground"]
+    ox, oy = tr["crop_origin_px"]; zf = tr["crop_zoom"]
+    P = np.array(tr["points_crop"], float)
+    px = ox + P[:, 0] / zf; py = oy + P[:, 1] / zf
+    y_mm = (px - nose_px) * s; z_mm = (ground_px - py) * s
 # template frame: nose at Y = min Y of template; ground at Z = 0
 Ty0 = 0.0 if T is None else T.vertices[:, 1].min()
 yz = np.c_[y_mm + Ty0, z_mm]
@@ -47,7 +55,7 @@ def side_hit(yv, zv):
     loc, idx, _ = ray.intersects_location(np.c_[np.full(len(yv), 400.0), yv, zv],
                                           np.tile([-1.0, 0, 0], (len(yv), 1)), multiple_hits=False)
     P = np.full((len(yv), 3), np.nan); P[idx] = loc; return P
-ATTACH_BELOW_TOP_MM = 23.0     # front photo: ear root ~23 mm under the skull top; breed standard: "slightly above eye level"
+ATTACH_BELOW_TOP_MM = float(tr.get("attach_below_top_mm", 23.0))     # front photo: ear root ~23 mm under the skull top; breed standard: "slightly above eye level"
 ya, za = outline[att, 0], outline[att, 1]
 za = np.minimum(za, skull_top(ya) - ATTACH_BELOW_TOP_MM)
 on = side_hit(ya, za)
@@ -71,6 +79,7 @@ info = {"mm_per_px": round(s, 4), "vertical_fit_to_attachment": round(sv, 3), "e
         "attach_on_template_x_mm": [round(float(on[:, 0].min()), 1), round(float(on[:, 0].max()), 1)]}
 json.dump(info, open(out / "ear_module.json", "w"), indent=1)
 print(info)
-plausible = (100 <= info["ear_length_mm_real"] <= 170 and 60 <= info["ear_width_mm_real"] <= 120
-             and 50 <= info["attach_line_mm_real"] <= 110)          # real Lab ear base is about 6-9 cm
+ex_ = tr.get("expect_mm", {"length": [100, 170], "width": [60, 120], "attach": [50, 110]})   # default: Labrador drop ear
+plausible = (ex_["length"][0] <= info["ear_length_mm_real"] <= ex_["length"][1] and ex_["width"][0] <= info["ear_width_mm_real"] <= ex_["width"][1]
+             and ex_["attach"][0] <= info["attach_line_mm_real"] <= ex_["attach"][1])
 print("RESULT:", "PASS" if plausible else "CHECK")

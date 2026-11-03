@@ -11,22 +11,12 @@ import numpy as np, trimesh
 from scipy.ndimage import gaussian_filter1d
 from shapely.geometry import Polygon
 sys.path.insert(0, str(Path(__file__).parent))
-from flatten import flatten, flatten_injective, distortion, fix_slivers
+from flatten import flatten, flatten_injective, distortion, fix_slivers, outline_ok
 
 pdir, ms, size, out = Path(sys.argv[1]), json.load(open(sys.argv[2])), float(sys.argv[3]), Path(sys.argv[4])
 out.mkdir(parents=True, exist_ok=True)
 k = size / (ms["nose_to_chest_front_mm"] + ms["body_length_mm"])
 layout = json.load(open(pdir / "pieces.json"))
-
-
-def outline_ok(uv, bnd):
-    P2 = uv[bnd]; seg = np.linalg.norm(np.diff(P2, axis=0, append=P2[:1]), axis=1).mean()
-    sg = max(1.0, 1.5 / seg)
-    Ps = np.c_[gaussian_filter1d(P2[:, 0], sg, mode="wrap"), gaussian_filter1d(P2[:, 1], sg, mode="wrap")]
-    Pg = Polygon(Ps)
-    if Pg.is_valid: return True
-    Pc = Pg.buffer(0); sa = 0.5 * abs(np.dot(Ps[:, 0], np.roll(Ps[:, 1], -1)) - np.dot(Ps[:, 1], np.roll(Ps[:, 0], -1)))
-    return Pc.geom_type == "Polygon" and abs(Pc.area - sa) / sa < 0.01
 
 
 report = {"scale": round(k, 4), "plush_nose_to_tail_mm": size, "layout": layout.get("layout"), "pieces": {}}
@@ -35,7 +25,10 @@ for pid, info in layout["pieces"].items():
     p = trimesh.load(pdir / f"{pid}.obj", process=False)
     V, F = np.asarray(p.vertices, float), np.asarray(p.faces, np.int64)
     Vk, slivers = fix_slivers(V * k, F)
-    uv, bnd = flatten(Vk, F, iters=150); method = "lscm+arap"
+    try:
+        uv, bnd = flatten(Vk, F, iters=150); method = "lscm+arap"
+    except RuntimeError:                         # ARAP cannot factor a near-degenerate piece: use the injective method
+        uv = np.full((len(Vk), 2), np.nan); bnd = None
     if not np.isfinite(uv).all() or not outline_ok(uv, bnd):
         uv, bnd = flatten_injective(Vk, F, iters=300); method = "tutte+slim"
     ar, lr, a3 = distortion(Vk, F, uv)

@@ -1,0 +1,20 @@
+{
+ "breed": "Bulldog (English bulldog)",
+ "standards": {
+  "kennel_club_uk": {
+   "weight_kg": {"male": 25, "female": 23},
+   "height": "not given; 'low in stature'",
+   "face": "stop-to-nose-tip not less than nose-tip-to-edge-of-underlip",
+   "notes": "head fairly large; skull broad and square, high from jaw corner to skull top; face short; muzzle short, broad, deep, slightly upturned; defined stop with a furrow to mid-skull; lower jaw projects slightly; flews thick, broad and deep; eyes round, low and wide; small thin rose ears set high; slight dewlap each side of the neck; chest wide, deep; loin higher than shoulders; forelegs short, wide-set, straight; hind legs slightly longer; tail short, thick at root, tapering, set low, carried down; coat short, close, smooth, fine; head skin finely wrinkled, over-nose wrinkle must not hide eyes or nose",
+   "source": "https://www.kusa.co.za/images/breed%20stds%20djaki/Bulldog%20-%20KC%20[01-2026].pdf (KC standard, facts extracted, text not copied)"
+  },
+  "fci_149": {"weight_kg": {"male": 25, "female": 23}, "source": "https://dev.fci.be/Nomenclature/Standards/149g02-en.pdf"},
+  "typical_height_at_withers_mm": [355, 400]
+ },
+ "targets_for_breed_shape": {
+  "withers_mm": {"value": 370, "why": "middle of the usual 355-400 mm range; the plush is scaled by nose to tail base anyway"},
+  "stop_to_nose_over_nose_to_underlip": {"target": 1.0, "accept": [0.93, 1.3], "why": "standard: not less than 1"},
+  "loin_over_withers": {"target": 1.03, "accept": [1.0, 1.08], "why": "standard: loin higher than shoulders"},
+  "elbow_over_height": {"target": 0.36, "accept": [0.32, 0.42], "why": "short forelegs, deep brisket; read from the reference side view, firm up with photos"}
+ }
+}

@@ -1,0 +1,10 @@
+{
+ "note": "All images here are AI-generated for this project (no third-party photos). Generated with Higgsfield (model gpt_image_2_5); ours to use.",
+ "inputs/hero_seated.jpg": {"source": "generated test-pet photo (brindle-and-white English bulldog), Oct 2026 session", "licence": "generated, project-owned"},
+ "inputs/standing_side.jpg": {"source": "generated test-pet photo, same dog", "licence": "generated, project-owned"},
+ "inputs/walking_back.jpg": {"source": "generated test-pet photo, same dog", "licence": "generated, project-owned"},
+ "side_6ac15386.png": {"source": "Higgsfield job 6ac15386-f569-4348-bf37-e397116562ae (refs: standing_side, hero_seated)", "licence": "generated, project-owned"},
+ "side_6ac15386_mirrored_right.png": {"source": "side_6ac15386.png mirrored left-right (right-side view for the multiview model)", "licence": "generated, project-owned"},
+ "front_b038d551.png": {"source": "Higgsfield job b038d551-39fc-46c8-a358-e718f2f8b47e (refs: side_6ac15386, hero_seated)", "licence": "generated, project-owned"},
+ "back_249345c8.png": {"source": "Higgsfield job 249345c8-e4f6-4767-ac8f-18b2e3ddb633 (refs: side_6ac15386, walking_back)", "licence": "generated, project-owned"}
+}

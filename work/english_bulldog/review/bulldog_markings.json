@@ -1,0 +1,92 @@
+{
+ "white_threshold": 165.0,
+ "white_share": 0.302,
+ "head_gusset_vs_blaze": [
+  {
+   "y_from_nose_mm": 60,
+   "seam_x_mm": 23.7,
+   "blaze_edge_x_mm": 27.0,
+   "offset_real_mm": 3.2,
+   "offset_plush_mm": 1.8
+  },
+  {
+   "y_from_nose_mm": 80,
+   "seam_x_mm": 22.7,
+   "blaze_edge_x_mm": 22.7,
+   "offset_real_mm": -0.0,
+   "offset_plush_mm": -0.0
+  },
+  {
+   "y_from_nose_mm": 100,
+   "seam_x_mm": 25.2,
+   "blaze_edge_x_mm": 25.0,
+   "offset_real_mm": -0.2,
+   "offset_plush_mm": -0.1
+  },
+  {
+   "y_from_nose_mm": 120,
+   "seam_x_mm": 27.4,
+   "blaze_edge_x_mm": 15.2,
+   "offset_real_mm": -12.1,
+   "offset_plush_mm": -6.7
+  },
+  {
+   "y_from_nose_mm": 140,
+   "seam_x_mm": 27.1,
+   "blaze_edge_x_mm": 0.0,
+   "offset_real_mm": -27.1,
+   "offset_plush_mm": -14.9
+  },
+  {
+   "y_from_nose_mm": 160,
+   "seam_x_mm": 25.7,
+   "blaze_edge_x_mm": 0.0,
+   "offset_real_mm": -25.7,
+   "offset_plush_mm": -14.1
+  },
+  {
+   "y_from_nose_mm": 180,
+   "seam_x_mm": 23.9,
+   "blaze_edge_x_mm": 0.0,
+   "offset_real_mm": -23.9,
+   "offset_plush_mm": -13.1
+  }
+ ],
+ "chest_vs_bib": [
+  {
+   "z_mm": 150,
+   "seam_y_mm": 190.1,
+   "colour_starts_y_mm": 209.6,
+   "offset_real_mm": 19.5,
+   "offset_plush_mm": 10.7
+  },
+  {
+   "z_mm": 180,
+   "seam_y_mm": 186.5,
+   "colour_starts_y_mm": 169.2,
+   "offset_real_mm": -17.3,
+   "offset_plush_mm": -9.5
+  },
+  {
+   "z_mm": 210,
+   "seam_y_mm": 182.1,
+   "colour_starts_y_mm": 152.6,
+   "offset_real_mm": -29.6,
+   "offset_plush_mm": -16.2
+  },
+  {
+   "z_mm": 240,
+   "seam_y_mm": 181.8,
+   "colour_starts_y_mm": 154.3,
+   "offset_real_mm": -27.5,
+   "offset_plush_mm": -15.1
+  },
+  {
+   "z_mm": 270,
+   "seam_y_mm": 157.0,
+   "colour_starts_y_mm": 160.5,
+   "offset_real_mm": 3.6,
+   "offset_plush_mm": 2.0
+  }
+ ]
+}

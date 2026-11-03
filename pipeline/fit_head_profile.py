@@ -5,7 +5,7 @@ head's top and bottom outline heights are read from the photo (scaled by withers
 aligned) and from the mesh; head vertices are remapped vertically so the mesh outline matches the photo's
 (linear between bottom and top at each Y), fading out over the neck. X is untouched, so symmetry is exact.
 
-Usage: python3 fit_head_profile.py work_dir mesh.obj out.obj [--fade 170 230]
+Usage: python3 fit_head_profile.py work_dir mesh.obj out.obj [--fade 170 230] [--zmin 420]
 Ends with an acceptance test: head outline within 2 mm of the photo outline (p90) for Y < 170 mm.
 """
 import json, sys
@@ -15,11 +15,12 @@ from scipy import ndimage
 sys.path.insert(0, __file__.rsplit("/", 1)[0]); import align_measure as am
 
 W, src, dst = sys.argv[1], sys.argv[2], sys.argv[3]
-F0, F1 = 170.0, 230.0
+F0, F1 = (float(sys.argv[sys.argv.index("--fade") + 1]), float(sys.argv[sys.argv.index("--fade") + 2])) if "--fade" in sys.argv else (170.0, 230.0)
 tr = json.load(open(f"{W}/ref/face_trace.json"))
 T = trimesh.load(src, process=False); V = np.asarray(T.vertices, float).copy(); F = np.asarray(T.faces)
 tri = np.r_[F[:, :3], F[:, [0, 2, 3]]] if F.shape[1] == 4 else F
-H, WD, ZMIN = 800, 320, 420
+H, WD = 800, 320
+ZMIN = float(sys.argv[sys.argv.index("--zmin") + 1]) if "--zmin" in sys.argv else 420.0   # head above this (Labrador 420)
 
 def side_mask(Vv):
     im = Image.new("L", (WD, H), 0); d = ImageDraw.Draw(im); y0 = Vv[:, 1].min()
@@ -30,7 +31,7 @@ def side_mask(Vv):
 def profile(mask):
     top = np.full(WD, np.nan); bot = np.full(WD, np.nan)
     for y in range(WD):
-        col = np.where(mask[: H - ZMIN, y])[0]
+        col = np.where(mask[: int(H - ZMIN), y])[0]
         if len(col): top[y] = H - col.min(); bot[y] = H - col.max()
     return top, bot
 

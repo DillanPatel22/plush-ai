@@ -13,6 +13,11 @@ from PIL import Image, ImageDraw
 sys.path.insert(0, __file__.rsplit("/", 1)[0]); import align_measure as am
 
 W, tpl, fpj, k, pre = sys.argv[1], sys.argv[2], sys.argv[3], float(sys.argv[4]), sys.argv[5]
+def opt(name, default):
+    return type(default)(sys.argv[sys.argv.index(name) + 1]) if name in sys.argv else default
+# breed settings (defaults = Labrador): head region above ZMIN, head length L (nose to occiput), stop search window
+ZMIN, L_HEAD, S0, S1 = opt("--head_zmin", 420), opt("--head_len", 240.0), opt("--stop_from", 40), opt("--stop_to", 160)
+MOUTH_DROP, YMAX = opt("--mouth_drop", 0.9), opt("--head_ymax", 230)
 tr = json.load(open(f"{W}/ref/face_trace.json")); fp = json.load(open(fpj))
 T = trimesh.load(tpl, process=False); V = T.vertices; F = np.asarray(T.faces)
 tri = np.r_[F[:, :3], F[:, [0, 2, 3]]] if F.shape[1] == 4 else F
@@ -35,17 +40,17 @@ from scipy import ndimage
 ph_side = ndimage.binary_closing(ph_side, iterations=2)
 
 def head_profile(mask):
-    """top and bottom of the head outline for Y in 0..260 mm (head region: above 420 mm)."""
+    """top and bottom of the head outline for Y in 0..260 mm (head region: above ZMIN)."""
     top = np.full(261, np.nan); bot = np.full(261, np.nan)
     for y in range(261):
-        col = np.where(mask[: H - 420, y])[0]
+        col = np.where(mask[: H - ZMIN, y])[0]
         if len(col): top[y] = H - col.min(); bot[y] = H - col.max()
     return top, bot
 tm, bm = head_profile(mesh_side); tp, bp = head_profile(ph_side)
-def stop_y(top):           # steepest rise of the top line between 40 and 160 mm from the nose
-    g = np.gradient(ndimage.uniform_filter1d(np.nan_to_num(top), 9)); return 40 + int(np.argmax(g[40:160]))
+def stop_y(top):           # steepest rise of the top line between S0 and S1 mm from the nose
+    g = np.gradient(ndimage.uniform_filter1d(np.nan_to_num(top), 9)); return S0 + int(np.argmax(g[S0:S1]))
 def ratios(top, bot):
-    sy = stop_y(top); L = 240.0
+    sy = stop_y(top); L = L_HEAD
     return {"stop_from_nose_over_L": sy / L, "depth_at_stop_over_L": (top[sy] - bot[sy]) / L,
             "muzzle_depth_mid_over_L": (top[sy // 2] - bot[sy // 2]) / L}
 side_m, side_p = ratios(tm, bm), ratios(tp, bp)
@@ -59,10 +64,11 @@ def front_width_photo(z):
     r = int(round(ey - (z - eye_z) / sf)); c = np.where(fm[r])[0]
     runs = np.split(c, np.where(np.diff(c) > 1)[0] + 1); run = [u for u in runs if u.min() <= cx <= u.max()]
     return (run[0].max() - run[0].min()) * sf if run else np.nan
-def front_width_mesh(z, ymax=230):
+def front_width_mesh(z, ymax=YMAX):
     sel = (np.abs(V[:, 2] - z) < 2.5) & (V[:, 1] < y0 + ymax); return 2 * np.abs(V[sel, 0]).max() if sel.any() else np.nan
-mouth_z = eye_z - 0.9 * eye_sp_mm              # mouth-corner height (front photo: ~0.9 eye spacings under the eyes)
-front_m = {"muzzle_width_over_eye_spacing": front_width_mesh(mouth_z, 120) / eye_sp_mm}
+mouth_z = eye_z - MOUTH_DROP * eye_sp_mm       # mouth-corner height (Labrador front photo: ~0.9 eye spacings under the eyes)
+if "muzzle_width_row_px" in tr: mouth_z = eye_z - (tr["muzzle_width_row_px"] - ey) * sf
+front_m = {"muzzle_width_over_eye_spacing": front_width_mesh(mouth_z, YMAX * 0.52) / eye_sp_mm}
 # face width between the ears at eye level, read off the front photo by eye (ear inner edges), see face_trace
 front_p = {"muzzle_width_over_eye_spacing": tr.get("muzzle_width_front_px", np.nan) / abs(ex1 - ex0)}
 skull_p = tr.get("face_width_eye_level_front_px", np.nan) / abs(ex1 - ex0)
@@ -77,7 +83,7 @@ bad = [k_ for k_, v in res["dev_pct"].items() if v is not None and abs(v) > 7]
 res["result"] = "PASS" if not bad else f"FAIL {bad}"
 json.dump(res, open(pre + "_face_check.json", "w"), indent=1, default=float)
 # overlay image (side head)
-r0, r1 = H - 760, H - 470                         # Z 470..760 mm, Y 0..320 mm from the nose
+zt = int(np.nanmax(tm)) + 20; r0, r1 = H - zt, H - (ZMIN + 20)  # head band, Y 0..320 mm from the nose
 ov = np.zeros((r1 - r0, 320, 3), np.uint8) + 255
 ov[mesh_side[r0:r1, :320]] = [235, 200, 150]
 pm = ph_side[r0:r1, :320]; edge = pm & ~ndimage.binary_erosion(pm, iterations=2)

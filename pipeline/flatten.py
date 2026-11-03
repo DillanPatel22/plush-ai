@@ -1,6 +1,8 @@
 """Shared flattening: LSCM initial guess, then ARAP to keep true lengths. Disk-topology triangle meshes only."""
 import igl
 import numpy as np
+from scipy.ndimage import gaussian_filter1d as _g1d
+from shapely.geometry import Polygon as _Polygon
 
 
 def fix_slivers(V, F, rel=1e-3, max_rounds=20):
@@ -20,6 +22,13 @@ def fix_slivers(V, F, rel=1e-3, max_rounds=20):
             P = V[F[fi]]; L = np.linalg.norm(P[[1, 2, 0]] - P, axis=1)       # edge i: vertex i -> i+1
             v = F[fi][(np.argmax(L) + 2) % 3]                                  # opposite the longest edge
             c = V[list(set(nbr[v]))].mean(0); V[v] += 0.1 * (c - V[v]); moved += 1
+    # a triangle lying along a straightened seam (all three corners on the seam, exactly collinear) does not respond
+    # to the nudge above: pull its middle corner off the line towards its other neighbours (sub-mm)
+    A = areas()
+    for fi in np.where(A < rel * A.mean())[0]:
+        P = V[F[fi]]; L = np.linalg.norm(P[[1, 2, 0]] - P, axis=1)
+        v = F[fi][(np.argmax(L) + 2) % 3]; others = [u for u in set(nbr[v]) if u not in F[fi]]
+        if others: V[v] += 0.3 * (V[others].mean(0) - V[v]); moved += 1
     return V, moved
 
 
@@ -94,3 +103,13 @@ def prescribe_boundary_lengths(V, F, uv, bnd, iters=100):
     uv2 = igl.arap_solve(np.ascontiguousarray(Q), data, np.ascontiguousarray(init))
     closure_change = float(np.abs(Ln - L).max())
     return uv2, closure_change
+
+
+def outline_ok(uv, bnd):
+    P2 = uv[bnd]; seg = np.linalg.norm(np.diff(P2, axis=0, append=P2[:1]), axis=1).mean()
+    sg = max(1.0, 1.5 / seg)
+    Ps = np.c_[_g1d(P2[:, 0], sg, mode="wrap"), _g1d(P2[:, 1], sg, mode="wrap")]
+    Pg = _Polygon(Ps)
+    if Pg.is_valid: return True
+    Pc = Pg.buffer(0); sa = 0.5 * abs(np.dot(Ps[:, 0], np.roll(Ps[:, 1], -1)) - np.dot(Ps[:, 1], np.roll(Ps[:, 0], -1)))
+    return Pc.geom_type == "Polygon" and abs(Pc.area - sa) / sa < 0.01

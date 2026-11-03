@@ -1,0 +1,30 @@
+{
+ "root_centre": [
+  0.0,
+  618.59,
+  303.6
+ ],
+ "tip_centre": [
+  0.0,
+  663.91,
+  282.47
+ ],
+ "axis": [
+  0.0,
+  0.9063,
+  -0.4226
+ ],
+ "r0_mm": 24.0,
+ "r1_mm": 22.0,
+ "length_mm": 50.0,
+ "angle_deg": 25.0,
+ "crown_mm": 10.0,
+ "rebuilt_region": {
+  "xw": 46.0,
+  "y_from": 565.0,
+  "z_from": 290.0
+ },
+ "watertight": true,
+ "vertices": 223208,
+ "stub_width_plush_mm": 24.1
+}

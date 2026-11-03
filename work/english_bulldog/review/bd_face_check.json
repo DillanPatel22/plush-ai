@@ -1,0 +1,28 @@
+{
+ "side_mesh": {
+  "stop_from_nose_over_L": 0.19473684210526315,
+  "depth_at_stop_over_L": 0.6210526315789474,
+  "muzzle_depth_mid_over_L": 0.45789473684210524
+ },
+ "side_photo": {
+  "stop_from_nose_over_L": 0.17894736842105263,
+  "depth_at_stop_over_L": 0.5947368421052631,
+  "muzzle_depth_mid_over_L": 0.4105263157894737
+ },
+ "front_mesh": {
+  "muzzle_width_over_eye_spacing": 1.4024121666264768,
+  "skull_width_eye_level_over_eye_spacing": 1.520411324652359
+ },
+ "front_photo": {
+  "muzzle_width_over_eye_spacing": 1.0769230769230769,
+  "skull_width_eye_level_over_eye_spacing": 1.7692307692307692
+ },
+ "dev_pct": {
+  "stop_from_nose_over_L": 8.8,
+  "depth_at_stop_over_L": 4.4,
+  "muzzle_depth_mid_over_L": 11.5,
+  "muzzle_width_over_eye_spacing": 30.2,
+  "skull_width_eye_level_over_eye_spacing": -14.1
+ },
+ "result": "FAIL ['stop_from_nose_over_L', 'muzzle_depth_mid_over_L', 'muzzle_width_over_eye_spacing', 'skull_width_eye_level_over_eye_spacing']"
+}

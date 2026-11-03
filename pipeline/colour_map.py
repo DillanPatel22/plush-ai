@@ -6,6 +6,9 @@ same colours drive the review preview, the airbrush guide on each pattern piece 
 Fur always starts white (design rule): these colours are what the airbrush/dye artist reproduces.
 
 Usage: python3 colour_map.py aligned_textured.glb target.obj out_prefix [--ear-outline ears/ear_outline_rel.npy]
+          [--ear-local] [--shadow_z 45]
+--ear-local: the ear is sampled on the outer 40 % of what lies inside the ear outline (small ears set high on the
+skull, e.g. rose ears), not of the whole dog's width; --shadow_z: paw height for the baked-shadow lift.
 Writes out_prefix_colours.npy (N x 3 uint8 sRGB per target vertex), out_prefix_colours.ply, out_prefix_ear.json.
 """
 import json, sys
@@ -43,7 +46,8 @@ for _ in range(3): col = 0.5 * col + 0.5 * (A @ col) / D[:, None]
 # or faces down, lightness is raised to at least 90 % of the body's median, keeping the hue. Real dark socks or
 # markings there are rare on these breeds; the review sheet shows the result so the artist can override it.
 Tn = trimesh.Trimesh(V, T.faces, process=False); vn = Tn.vertex_normals
-under = (V[:, 2] < 45.0) | (vn[:, 2] < -0.5)
+SHADOW_Z = float(sys.argv[sys.argv.index("--shadow_z") + 1]) if "--shadow_z" in sys.argv else 45.0   # paw height (Labrador 45 mm)
+under = (V[:, 2] < SHADOW_Z) | (vn[:, 2] < -0.5)
 lum_ = col.mean(1); floor = 0.9 * np.median(lum_[~under])
 low = under & (lum_ < floor)
 col[low] = col[low] * (floor / np.maximum(lum_[low], 1))[:, None]
@@ -61,7 +65,10 @@ ear = {}
 if "--ear-outline" in sys.argv:
     ol = np.load(sys.argv[sys.argv.index("--ear-outline") + 1])
     poly = Polygon(ol + [src.vertices[:, 1].min(), 0]).buffer(-6)
-    S = src.vertices; inside = contains_xy(poly, S[:, 1], S[:, 2]) & (S[:, 0] > 0.6 * np.abs(S[:, 0]).max())
+    S = src.vertices; inpoly = contains_xy(poly, S[:, 1], S[:, 2])
+    # the ear flap stands off the skull: its outer 40 % in X (Labrador drop ear: x > 0.6 of the dog's half-width)
+    xref = S[inpoly & (S[:, 0] > 0), 0].max() if "--ear-local" in sys.argv and (inpoly & (S[:, 0] > 0)).any() else np.abs(S[:, 0]).max()
+    inside = inpoly & (S[:, 0] > 0.6 * xref)
     if inside.sum() > 20:
         vc = sample(S[inside]); ear = {"ear_rgb": [int(round(c)) for c in np.median(vc, 0)], "samples": int(inside.sum())}
 json.dump(ear, open(pre + "_ear.json", "w"))

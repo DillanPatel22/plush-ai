@@ -1,0 +1,224 @@
+{
+ "vertices": 10971,
+ "same_count_and_order": true,
+ "to_breed_mean_mm": 0.15,
+ "to_breed_p95_mm": 0.39,
+ "breed_to_template_p95_mm": 1.41,
+ "breed_to_template_max_mm": 15.61,
+ "fold_edges_gt150deg": 7,
+ "fold_edges_base": 10,
+ "facing_away_from_breed_pct": 0.447,
+ "symmetry_max_mm": 0.0,
+ "min_angle_p1_deg": 6.5,
+ "slivers_lt5deg_pct": 0.71,
+ "landmarks": {
+  "belly": [
+   0.0,
+   412.8,
+   126.6
+  ],
+  "brisket": [
+   0.0,
+   288.6,
+   118.0
+  ],
+  "buttock": [
+   0.0,
+   633.6,
+   213.5
+  ],
+  "cheek_R": [
+   70.2,
+   83.3,
+   349.2
+  ],
+  "cheek_L": [
+   -70.2,
+   83.3,
+   349.2
+  ],
+  "chest_front": [
+   0.0,
+   110.9,
+   212.6
+  ],
+  "chin": [
+   0.0,
+   72.5,
+   265.2
+  ],
+  "eye_R": [
+   54.7,
+   72.9,
+   397.0
+  ],
+  "eye_L": [
+   -54.7,
+   72.9,
+   397.0
+  ],
+  "front_leg_33_R": [
+   91.8,
+   213.4,
+   38.3
+  ],
+  "front_leg_33_L": [
+   -91.8,
+   213.4,
+   38.3
+  ],
+  "front_leg_66_R": [
+   104.9,
+   194.2,
+   76.6
+  ],
+  "front_leg_66_L": [
+   -104.9,
+   194.2,
+   76.6
+  ],
+  "front_sole_R": [
+   103.8,
+   188.8,
+   0.1
+  ],
+  "front_sole_L": [
+   -103.8,
+   188.8,
+   0.1
+  ],
+  "front_toe_R": [
+   103.6,
+   153.7,
+   0.9
+  ],
+  "front_toe_L": [
+   -103.6,
+   153.7,
+   0.9
+  ],
+  "hind_leg_33_R": [
+   108.1,
+   632.1,
+   38.3
+  ],
+  "hind_leg_33_L": [
+   -108.1,
+   632.1,
+   38.3
+  ],
+  "hind_leg_66_R": [
+   88.2,
+   637.8,
+   76.6
+  ],
+  "hind_leg_66_L": [
+   -88.2,
+   637.8,
+   76.6
+  ],
+  "hind_sole_R": [
+   96.0,
+   620.4,
+   0.1
+  ],
+  "hind_sole_L": [
+   -96.0,
+   620.4,
+   0.1
+  ],
+  "hind_toe_R": [
+   101.2,
+   587.9,
+   0.9
+  ],
+  "hind_toe_L": [
+   -101.2,
+   587.9,
+   0.9
+  ],
+  "loin": [
+   0.0,
+   618.3,
+   326.0
+  ],
+  "muzzle_top": [
+   0.0,
+   40.2,
+   399.1
+  ],
+  "nose": [
+   0.0,
+   1.6,
+   311.1
+  ],
+  "skull_side_R": [
+   70.4,
+   111.7,
+   393.3
+  ],
+  "skull_side_L": [
+   -70.4,
+   111.7,
+   393.3
+  ],
+  "skull_top": [
+   0.0,
+   125.9,
+   444.0
+  ],
+  "stop": [
+   0.0,
+   75.5,
+   426.9
+  ],
+  "tail_c0": [
+   0.0,
+   634.8,
+   296.1
+  ],
+  "tail_c1": [
+   0.0,
+   649.3,
+   289.3
+  ],
+  "tail_c2": [
+   0.0,
+   663.9,
+   282.5
+  ],
+  "tail_end": [
+   0.0,
+   683.8,
+   273.2
+  ],
+  "tail_root_top": [
+   0.0,
+   627.7,
+   324.5
+  ],
+  "tail_root_under": [
+   0.0,
+   640.0,
+   265.1
+  ],
+  "topline": [
+   0.0,
+   451.7,
+   351.0
+  ],
+  "withers": [
+   0.0,
+   274.8,
+   371.3
+  ]
+ },
+ "breed_measures": {
+  "withers_height_mm": 369.0,
+  "elbow_height_mm": 116.0,
+  "body_length_mm": 529.0,
+  "length_to_height": 1.434,
+  "elbow_over_height": 0.314,
+  "nose_to_chest_front_mm": 109.0
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "mm_per_px": 1.0,
+ "vertical_fit_to_attachment": 0.788,
+ "ear_area_cm2_real": 25.0,
+ "ear_length_mm_real": 82.8,
+ "ear_width_mm_real": 47.6,
+ "attach_line_mm_real": 83.6,
+ "attach_on_template_x_mm": [
+  37.2,
+  56.1
+ ]
+}

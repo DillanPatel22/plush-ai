@@ -1,6 +1,7 @@
 """Render review views of a mesh with Blender (Cycles, CPU, headless).
 
 Usage: python3 render_views.py mesh.(glb|ply|obj) out_dir [--plain] [--views side,front,three_quarter,back,top]
+       [--head [--head_box y_len_mm z_min_mm]]   (head close-up; default box = Labrador: 330 mm from the nose, above 420 mm)
 Mesh must already be in the project frame (X side, Y nose->tail with nose at -Y, Z up, mm).
 --plain renders a soft white fabric-like material instead of any texture.
 """
@@ -89,7 +90,8 @@ size = max(mx - mn)
 if head:
     hv = [o.matrix_world @ v.co for o in objs for v in o.data.vertices]
     y0 = min(p.y for p in hv)
-    hv = [p for p in hv if p.y < y0 + 0.33 and p.z > 0.42]
+    hy, hz = (float(args[args.index("--head_box") + 1]) / 1000, float(args[args.index("--head_box") + 2]) / 1000) if "--head_box" in args else (0.33, 0.42)
+    hv = [p for p in hv if p.y < y0 + hy and p.z > hz]
     hmn = Vector((min(p.x for p in hv), min(p.y for p in hv), min(p.z for p in hv)))
     hmx = Vector((max(p.x for p in hv), max(p.y for p in hv), max(p.z for p in hv)))
 

@@ -1,0 +1,134 @@
+{
+ "P02": {
+  "before": {
+   "area_dev_p95": 0.082,
+   "flipped": 0,
+   "boundary_len_ratio": 1.044,
+   "outline_valid": true
+  },
+  "after": {
+   "area_dev_p95": 0.062,
+   "flipped": 0,
+   "boundary_len_ratio": 1.026,
+   "outline_valid": true
+  },
+  "darts": [
+   {
+    "mode": "dome",
+    "mouth": [
+     255,
+     1383
+    ],
+    "apex": 978,
+    "length_mm": 21.9,
+    "opening_mm": 10.5
+   }
+  ]
+ },
+ "P07": {
+  "before": {
+   "area_dev_p95": 0.12,
+   "flipped": 0,
+   "boundary_len_ratio": 0.989,
+   "outline_valid": true
+  },
+  "after": {
+   "area_dev_p95": 0.12,
+   "flipped": 0,
+   "boundary_len_ratio": 0.989,
+   "outline_valid": true
+  },
+  "darts": []
+ },
+ "P09": {
+  "before": {
+   "area_dev_p95": 0.114,
+   "flipped": 0,
+   "boundary_len_ratio": 1.009,
+   "outline_valid": true
+  },
+  "after": {
+   "area_dev_p95": 0.114,
+   "flipped": 0,
+   "boundary_len_ratio": 1.009,
+   "outline_valid": true
+  },
+  "darts": []
+ },
+ "P11": {
+  "before": {
+   "area_dev_p95": 0.121,
+   "flipped": 0,
+   "boundary_len_ratio": 0.971,
+   "outline_valid": true
+  },
+  "after": {
+   "area_dev_p95": 0.121,
+   "flipped": 0,
+   "boundary_len_ratio": 0.971,
+   "outline_valid": true
+  },
+  "darts": []
+ },
+ "P17": {
+  "before": {
+   "area_dev_p95": 0.233,
+   "flipped": 0,
+   "boundary_len_ratio": 1.1,
+   "outline_valid": true
+  },
+  "after": {
+   "area_dev_p95": 0.233,
+   "flipped": 0,
+   "boundary_len_ratio": 1.1,
+   "outline_valid": true
+  },
+  "darts": []
+ },
+ "P23": {
+  "before": {
+   "area_dev_p95": 0.153,
+   "flipped": 0,
+   "boundary_len_ratio": 1.116,
+   "outline_valid": true
+  },
+  "after": {
+   "area_dev_p95": 0.048,
+   "flipped": 0,
+   "boundary_len_ratio": 1.031,
+   "outline_valid": true
+  },
+  "darts": [
+   {
+    "mode": "hotspot",
+    "mouth": [
+     272,
+     377
+    ],
+    "apex": 271,
+    "length_mm": 20.9,
+    "opening_mm": 16.4
+   },
+   {
+    "mode": "dome",
+    "mouth": [
+     132,
+     381
+    ],
+    "apex": 161,
+    "length_mm": 10.7,
+    "opening_mm": 3.2
+   },
+   {
+    "mode": "hotspot",
+    "mouth": [
+     372,
+     385
+    ],
+    "apex": 78,
+    "length_mm": 12.3,
+    "opening_mm": 5.5
+   }
+  ]
+ }
+}

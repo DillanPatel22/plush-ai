@@ -1,0 +1,25 @@
+{
+ "side_image": "ref/side_6ac15386.png",
+ "front_image": "ref/front_b038d551.png",
+ "withers_mm": 370,
+ "eye_side_px": [
+  355,
+  315
+ ],
+ "eye_front_px": [
+  [
+   885,
+   333
+  ],
+  [
+   1145,
+   333
+  ]
+ ],
+ "eye_width_front_px": 50,
+ "nose_width_front_px": 130,
+ "face_width_eye_level_front_px": 460,
+ "muzzle_width_front_px": 280,
+ "note": "pixel positions in the original reference images, read by eye from gridded crops (20 px grid); muzzle width = across the flews at the mouth corners; face width = between the ear inner edges at eye level; confirm on the first sample; muzzle width read at row 540 (across the flews, below the mouth corners)",
+ "muzzle_width_row_px": 540
+}

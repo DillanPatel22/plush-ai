@@ -1,0 +1,12 @@
+{
+ "eye_R": [
+  53.1,
+  73.6,
+  394.3
+ ],
+ "surface_dist_mm": 4.2,
+ "eye_diam_mm_plush": 10.5,
+ "nose_width_mm_plush": 27.3,
+ "eye_spacing_mm_plush": 54.6,
+ "source": "points read off the reference images; confirm on the first sample"
+}

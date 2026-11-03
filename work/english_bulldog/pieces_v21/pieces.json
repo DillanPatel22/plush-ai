@@ -1,0 +1,166 @@
+{
+ "layout": "standing v2.1 (proposal, competitor-style legs) + pronounced-muzzle module, English bulldog",
+ "pieces": {
+  "P01": {
+   "name": "head gusset",
+   "label": 1,
+   "faces": 1024,
+   "area_cm2_real": 107.9,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P02": {
+   "name": "side head R",
+   "label": 2,
+   "faces": 2584,
+   "area_cm2_real": 216.0,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P03": {
+   "name": "side head L",
+   "label": 3,
+   "faces": 2584,
+   "area_cm2_real": 216.0,
+   "euler": 1,
+   "mirror_of": "P02"
+  },
+  "P04": {
+   "name": "chin / lower lip (undershot)",
+   "label": 4,
+   "faces": 1030,
+   "area_cm2_real": 63.5,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P05": {
+   "name": "muzzle top R (side of the nose up to the stop)",
+   "label": 21,
+   "faces": 277,
+   "area_cm2_real": 30.8,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P06": {
+   "name": "muzzle top L (side of the nose up to the stop)",
+   "label": 22,
+   "faces": 277,
+   "area_cm2_real": 30.8,
+   "euler": 1,
+   "mirror_of": "P05"
+  },
+  "P07": {
+   "name": "body side R (with outside of legs)",
+   "label": 5,
+   "faces": 25136,
+   "area_cm2_real": 1815.1,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P08": {
+   "name": "body side L (with outside of legs)",
+   "label": 6,
+   "faces": 25136,
+   "area_cm2_real": 1815.1,
+   "euler": 1,
+   "mirror_of": "P07"
+  },
+  "P09": {
+   "name": "chest R",
+   "label": 9,
+   "faces": 3539,
+   "area_cm2_real": 266.3,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P10": {
+   "name": "chest L",
+   "label": 26,
+   "faces": 3539,
+   "area_cm2_real": 266.3,
+   "euler": 1,
+   "mirror_of": "P09"
+  },
+  "P11": {
+   "name": "underbody R (belly, inside of legs)",
+   "label": 10,
+   "faces": 8070,
+   "area_cm2_real": 621.0,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P12": {
+   "name": "underbody L (belly, inside of legs)",
+   "label": 11,
+   "faces": 8070,
+   "area_cm2_real": 621.0,
+   "euler": 1,
+   "mirror_of": "P11"
+  },
+  "P13": {
+   "name": "sole front R",
+   "label": 30,
+   "faces": 299,
+   "area_cm2_real": 19.2,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P14": {
+   "name": "sole front L",
+   "label": 31,
+   "faces": 299,
+   "area_cm2_real": 19.2,
+   "euler": 1,
+   "mirror_of": "P13"
+  },
+  "P15": {
+   "name": "sole hind R",
+   "label": 32,
+   "faces": 252,
+   "area_cm2_real": 24.7,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P16": {
+   "name": "sole hind L",
+   "label": 33,
+   "faces": 252,
+   "area_cm2_real": 24.7,
+   "euler": 1,
+   "mirror_of": "P15"
+  },
+  "P17": {
+   "name": "tail R",
+   "label": 12,
+   "faces": 2035,
+   "area_cm2_real": 60.9,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P18": {
+   "name": "tail L",
+   "label": 13,
+   "faces": 2035,
+   "area_cm2_real": 60.9,
+   "euler": 1,
+   "mirror_of": "P17"
+  },
+  "P23": {
+   "name": "jowl R (flews)",
+   "label": 27,
+   "faces": 657,
+   "area_cm2_real": 78.9,
+   "euler": 1,
+   "mirror_of": null
+  },
+  "P24": {
+   "name": "jowl L (flews)",
+   "label": 28,
+   "faces": 657,
+   "area_cm2_real": 78.9,
+   "euler": 1,
+   "mirror_of": "P23"
+  }
+ },
+ "transferred_from": "../labrador/pieces_v21_template_v04"
+}

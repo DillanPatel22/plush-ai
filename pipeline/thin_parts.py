@@ -1,6 +1,6 @@
 """Check legs and tail are wide enough to turn and stuff at a given plush size.
 
-Usage: python3 thin_parts.py template.obj measures.json nose_to_tail_mm min_width_mm out.json
+Usage: python3 thin_parts.py template.obj measures.json nose_to_tail_mm min_width_mm out.json [--tail_axis tail_stub.json]
 Width = smallest width (minimum Feret diameter) of each cross-section, scaled to plush size.
 """
 import json
@@ -47,9 +47,17 @@ for z in np.linspace(0.04 * H, 0.35 * H, 8):
 y_but = ms["nose_to_chest_front_mm"] + ms["body_length_mm"]
 ymax = m.vertices[:, 1].max()
 tail_len = ymax - y_but
-for y in np.linspace(y_but + 15, ymax - 0.12 * tail_len, 8):          # last 12 % is the rounded tip cap
-    for c, w in sections([0, y, 0], [0, 1, 0], lambda c: c[2] > 0.45 * H):
-        report["tail"].append({"y_mm": round(float(y), 1), "plush_width_mm": round(w * k, 1)})
+if "--tail_axis" in sys.argv:                  # short angled tail stub (tail_stub.py): cut across its own axis
+    ta = json.load(open(sys.argv[sys.argv.index("--tail_axis") + 1]))
+    rc, d_ = np.array(ta["root_centre"]), np.array(ta["axis"])
+    for f in np.linspace(0.55, 0.9, 6):                                 # the exposed part of the stub
+        o = rc + d_ * ta["length_mm"] * f
+        for c, w in sections(o, d_, lambda c, o=o: np.linalg.norm(c - o) < 0.8 * ta["r0_mm"]):
+            report["tail"].append({"y_mm": round(float(o[1]), 1), "plush_width_mm": round(w * k, 1), "across_axis": True})
+else:
+    for y in np.linspace(y_but + 15, ymax - 0.12 * tail_len, 8):          # last 12 % is the rounded tip cap
+        for c, w in sections([0, y, 0], [0, 1, 0], lambda c: c[2] > 0.45 * H):
+            report["tail"].append({"y_mm": round(float(y), 1), "plush_width_mm": round(w * k, 1)})
 thin = [s for s in report["legs"] + report["tail"] if s["plush_width_mm"] < min_w]
 report["thin_sections"] = thin
 report["result"] = "PASS" if not thin else "THIN"

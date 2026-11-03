@@ -7,7 +7,8 @@ compared with the dog's coat direction field:
   throat, chest and fronts of the shoulders (forward-facing): down;   legs: down;      underbody: back;      tail: towards the tip.
 Reports, per piece and per body region, the share of area whose pile is more than 30 / 60 degrees off.
 
-Usage: python3 nap_check.py flat_dir measures.json plush_nose_to_tail_mm out.json [--best]
+Usage: python3 nap_check.py flat_dir measures.json plush_nose_to_tail_mm out.json [--best|--visible]
+          [--bounds head_end,chest_y0,chest_y1,chest_top (real mm; default Labrador 230,150,360,520)] [--tail_axis tail_stub.json]
 --best: rotate each piece so its area-weighted coat direction points down the roll (the rule for layout v2);
 --visible: choose each piece's pile direction (any angle) to minimise the area more than 30 degrees off, weighted by
 how much each region is seen on the finished plush (belly and inner thighs count for little, the face for most);
@@ -20,6 +21,9 @@ import numpy as np
 flat, ms, size = Path(sys.argv[1]), json.load(open(sys.argv[2])), float(sys.argv[3])
 k = size / (ms["nose_to_chest_front_mm"] + ms["body_length_mm"])
 leg_top_real = max(ms["elbow_height_mm"] * 1.05, 0.5 * ms["withers_height_mm"])
+# breed regions in real mm (defaults = Labrador): head end, chest Y range and top, from --bounds "230,150,360,520"
+HEAD_END, CH_Y0, CH_Y1, CH_Z = (float(v) for v in (sys.argv[sys.argv.index("--bounds") + 1] if "--bounds" in sys.argv else "230,150,360,520").split(","))
+TAIL = json.load(open(sys.argv[sys.argv.index("--tail_axis") + 1])) if "--tail_axis" in sys.argv else None   # tail stub (tail_stub.py)
 
 
 def export_fur(P):                     # the field export_pattern.py uses to choose each piece's rotation
@@ -30,13 +34,20 @@ def coat(P, N, y0):
     """Labrador coat direction (unit vectors) and a region name per face."""
     y = (P[:, 1] - y0) / k; z = P[:, 2] / k
     d = np.tile([0.0, 0.82, -0.57], (len(P), 1)); reg = np.full(len(P), "body side", object)
-    head = y < 230; d[head] = [0, 1, 0]; reg[head] = "head"
+    head = y < HEAD_END; d[head] = [0, 1, 0]; reg[head] = "head"
     # throat, chest and the front of the shoulders face forward; the coat there runs down
-    chest = (y >= 150) & (y < 360) & (N[:, 1] < -0.3) & (z < 520); d[chest] = [0, 0, -1]; reg[chest] = "chest & shoulder fronts"
+    chest = (y >= CH_Y0) & (y < CH_Y1) & (N[:, 1] < -0.3) & (z < CH_Z); d[chest] = [0, 0, -1]; reg[chest] = "chest & shoulder fronts"
     under = (N[:, 2] < -0.5) & ~head; d[under] = [0, 1, 0]; reg[under] = "underbody"
     legs = z < leg_top_real * 0.9; d[legs] = [0, 0, -1]; reg[legs] = "legs"
-    tail = (y > ms["nose_to_chest_front_mm"] + ms["body_length_mm"] + 30) & (z > 0.45 * ms["withers_height_mm"])
-    d[tail] = [0, 0.9, 0.44]; reg[tail] = "tail"
+    if TAIL is None:
+        tail = (y > ms["nose_to_chest_front_mm"] + ms["body_length_mm"] + 30) & (z > 0.45 * ms["withers_height_mm"])
+        d[tail] = [0, 0.9, 0.44]
+    else:                                      # stub: coat runs along the stub's axis towards its tip
+        rc = np.array(TAIL["root_centre"]) - [0, ms.get("nose_y0", 0.0), 0]; ax = np.array(TAIL["axis"])
+        q = np.c_[P[:, 0] / k, y, z] - rc; t = q @ ax
+        tail = (t > 0.3 * TAIL["length_mm"]) & (np.linalg.norm(q - t[:, None] * ax, axis=1) < TAIL["r0_mm"] + 12)
+        d[tail] = ax
+    reg[tail] = "tail"
     sole = (N[:, 2] < -0.85) & (z < 4); reg[sole] = "soles (pads, no pile)"
     return d, reg
 

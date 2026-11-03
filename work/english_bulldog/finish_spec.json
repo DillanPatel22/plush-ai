@@ -1,0 +1,26 @@
+{
+ "breed": "English bulldog (brindle and white pied)",
+ "status": "starting values for the first sample; the workshop sets the final numbers",
+ "plush_size_mm": 350,
+ "sources": {
+  "coat": "Kennel Club / FCI standard: coat short, close and smooth, fine in texture (facts extracted, text not copied)",
+  "head_skin": "Kennel Club standard: head skin slightly loose and finely wrinkled without excess; an over-nose wrinkle must not hide the eyes or nose",
+  "tail": "Kennel Club standard: tail short, thick at the root, tapering, set low, carried down",
+  "colour": "Kennel Club standard: brindle, red, fawn, white and pied; colours read from the customer's photos via the photo-textured 3D model"
+ },
+ "stock_fur": "white acrylic pile on knitted polyester backing, short, dense and smooth (not shaggy), pile at least 8 mm so the longest zone can be trimmed to length",
+ "trim_zones": [
+  {"zone": "muzzle", "length_mm": 3, "colour": [230, 120, 90], "note": "shortest, velvety: jowls, muzzle tops, chin"},
+  {"zone": "head and ears", "length_mm": 4, "colour": [240, 190, 70], "note": "short and smooth so the wrinkles read; ears both sides"},
+  {"zone": "legs", "length_mm": 5, "colour": [120, 170, 220], "note": "short, brushed downwards"},
+  {"zone": "body", "length_mm": 6, "colour": [150, 200, 120], "note": "standard coat; brushed back and down"},
+  {"zone": "neck and chest", "length_mm": 6, "colour": [190, 140, 210], "note": "same as the body: a bulldog has no ruff"},
+  {"zone": "tail", "length_mm": 5, "colour": [110, 200, 200], "note": "short stub, smooth"}
+ ],
+ "regions": {"head_labels": [1, 2, 3, 4, 21, 22, 27, 28], "muzzle_labels": [21, 22, 27, 28], "gusset_muzzle_y": 60, "chin_muzzle_y": 120,
+             "front_leg_y": [140, 290], "rear_leg_y": [530, 690], "front_leg_z": 125, "rear_leg_z": 150, "tail_labels": [12, 13],
+             "chest_labels": [9, 26], "neck_y": 200, "neck_z": 250},
+ "size_rule": "fur lengths scale with plush size; at 350 mm every leg is already wider than the 25 mm tube minimum (27.6 mm), so the bulldog keeps its true proportions; only the tail stub is set at the minimum (30 mm wide)",
+ "markings_rule": "brindle and other markings are airbrushed on the white stock fur from the colour guide; where the dog has a crisp white edge (blaze, bib, socks) the nearest seam can be moved onto that edge so the colour change hides it (craftsman approval per seam)",
+ "wrinkle_rule": "the 3D shape stays smooth; wrinkles are needle-sculpted from the wrinkle map and shaded darker in the crease with the airbrush (competitor reviews ask for deeper, darker head wrinkles)"
+}

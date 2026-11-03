@@ -1,0 +1,27 @@
+{
+ "breed": "English bulldog",
+ "version": "0.1-candidate",
+ "status": "awaiting approval (not frozen)",
+ "base": "library/dog/base_template_v0.4_candidate.obj (same vertex count and order)",
+ "built_by": "pipeline/reshape_template.py + simplify_plush.py (see work/english_bulldog and CHANGELOG)",
+ "reference": "4 generated views of a brindle-and-white English bulldog -> Tripo H3.1 multiview (work/english_bulldog/ref, raw)",
+ "tail": "curl replaced by a plush stub (pipeline/tail_stub.py), 30 mm wide at medium",
+ "reshape_check": {
+  "to_breed_mean_mm": 0.15,
+  "to_breed_p95_mm": 0.39,
+  "breed_to_template_p95_mm": 1.41,
+  "fold_edges_gt150deg": 7,
+  "fold_edges_base": 10,
+  "slivers_lt5deg_pct": 0.71,
+  "symmetry_max_mm": 0.0
+ },
+ "withers_mm": 370.0,
+ "length_to_height": 1.43,
+ "elbow_over_height": 0.314,
+ "notes": [
+  "head-profile fit to the side photo skipped: white blaze, muzzle and chest blend into the white studio background, so the photo outline is unreliable",
+  "photo face check not used for the same reason; likeness to be checked on the first sample",
+  "front paws: up to 20 mm of the turned-out toes not covered by the template (paws are simplified on the plush anyway)"
+ ],
+ "frame": "mm; X left/right (symmetry X=0), Y nose to tail (nose at min Y), Z up (ground Z=0)"
+}

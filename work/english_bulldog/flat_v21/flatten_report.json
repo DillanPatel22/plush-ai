@@ -1,0 +1,139 @@
+{
+ "scale": 0.5486,
+ "plush_nose_to_tail_mm": 350.0,
+ "layout": "standing v2.1 (proposal, competitor-style legs) + pronounced-muzzle module, English bulldog",
+ "pieces": {
+  "P01": {
+   "name": "head gusset",
+   "faces": 1024,
+   "area_3d_cm2": 32.5,
+   "area_dev_p95": 0.03,
+   "len_dev_p95": 0.018,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 0,
+   "outline_valid": true,
+   "boundary_len_ratio": 1.013
+  },
+  "P02": {
+   "name": "side head R",
+   "faces": 2584,
+   "area_3d_cm2": 65.0,
+   "area_dev_p95": 0.082,
+   "len_dev_p95": 0.057,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 0,
+   "outline_valid": true,
+   "boundary_len_ratio": 1.044
+  },
+  "P04": {
+   "name": "chin / lower lip (undershot)",
+   "faces": 1030,
+   "area_3d_cm2": 19.1,
+   "area_dev_p95": 0.049,
+   "len_dev_p95": 0.035,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 0,
+   "outline_valid": true,
+   "boundary_len_ratio": 0.974
+  },
+  "P05": {
+   "name": "muzzle top R (side of the nose up to the stop)",
+   "faces": 277,
+   "area_3d_cm2": 9.3,
+   "area_dev_p95": 0.016,
+   "len_dev_p95": 0.01,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 0,
+   "outline_valid": true,
+   "boundary_len_ratio": 1.0
+  },
+  "P07": {
+   "name": "body side R (with outside of legs)",
+   "faces": 25136,
+   "area_3d_cm2": 546.3,
+   "area_dev_p95": 0.12,
+   "len_dev_p95": 0.072,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 80,
+   "outline_valid": true,
+   "boundary_len_ratio": 0.989
+  },
+  "P09": {
+   "name": "chest R",
+   "faces": 3539,
+   "area_3d_cm2": 80.2,
+   "area_dev_p95": 0.114,
+   "len_dev_p95": 0.064,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 0,
+   "outline_valid": true,
+   "boundary_len_ratio": 1.009
+  },
+  "P11": {
+   "name": "underbody R (belly, inside of legs)",
+   "faces": 8070,
+   "area_3d_cm2": 186.9,
+   "area_dev_p95": 0.121,
+   "len_dev_p95": 0.067,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 100,
+   "outline_valid": true,
+   "boundary_len_ratio": 0.971
+  },
+  "P13": {
+   "name": "sole front R",
+   "faces": 299,
+   "area_3d_cm2": 5.8,
+   "area_dev_p95": 0.035,
+   "len_dev_p95": 0.023,
+   "flipped": 0,
+   "method": "tutte+slim",
+   "sliver_fixes": 20,
+   "outline_valid": true,
+   "boundary_len_ratio": 1.006
+  },
+  "P15": {
+   "name": "sole hind R",
+   "faces": 252,
+   "area_3d_cm2": 7.4,
+   "area_dev_p95": 0.01,
+   "len_dev_p95": 0.009,
+   "flipped": 0,
+   "method": "tutte+slim",
+   "sliver_fixes": 60,
+   "outline_valid": true,
+   "boundary_len_ratio": 1.005
+  },
+  "P17": {
+   "name": "tail R",
+   "faces": 2035,
+   "area_3d_cm2": 18.3,
+   "area_dev_p95": 0.233,
+   "len_dev_p95": 0.072,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 0,
+   "outline_valid": true,
+   "boundary_len_ratio": 1.1
+  },
+  "P23": {
+   "name": "jowl R (flews)",
+   "faces": 657,
+   "area_3d_cm2": 23.7,
+   "area_dev_p95": 0.153,
+   "len_dev_p95": 0.092,
+   "flipped": 0,
+   "method": "lscm+arap",
+   "sliver_fixes": 0,
+   "outline_valid": true,
+   "boundary_len_ratio": 1.116
+  }
+ }
+}

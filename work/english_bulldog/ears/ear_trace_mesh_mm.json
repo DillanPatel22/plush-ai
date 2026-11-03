@@ -1,0 +1,8 @@
+{
+ "source": "aligned/aligned_merged.ply, side view rendered on a 5 mm grid (rose ear incl. the burr shown by the fold); points read by eye, real-dog mm, Y from the nose tip, Z from the ground; confirm on the first sample",
+ "points_mm": [[108,438],[115,444],[128,447],[145,446],[160,440],[175,428],[186,415],[192,403],[186,397],[175,391],[163,384],[152,376],[146,378],[141,392],[137,408],[128,420],[115,426],[108,432]],
+ "attach_points": [0, 1, 2, 3, 4, 5],
+ "attach_below_top_mm": 8.0,
+ "expect_mm": {"length": [55, 110], "width": [30, 80], "attach": [30, 90]},
+ "note": "English bulldog rose ear: small, thin, set high on the skull's top corners (KC standard); real ear about 7-10 cm"
+}

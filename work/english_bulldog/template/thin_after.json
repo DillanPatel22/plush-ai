@@ -1,0 +1,116 @@
+{
+ "plush_nose_to_tail_mm": 350.0,
+ "scale": 0.5486,
+ "min_width_mm": 25.0,
+ "legs": [
+  {
+   "z_mm": 14.8,
+   "y_mm": 626.3,
+   "plush_width_mm": 34.9
+  },
+  {
+   "z_mm": 14.8,
+   "y_mm": 200.3,
+   "plush_width_mm": 33.1
+  },
+  {
+   "z_mm": 31.2,
+   "y_mm": 637.1,
+   "plush_width_mm": 29.6
+  },
+  {
+   "z_mm": 31.2,
+   "y_mm": 210.7,
+   "plush_width_mm": 32.3
+  },
+  {
+   "z_mm": 47.6,
+   "y_mm": 217.3,
+   "plush_width_mm": 29.3
+  },
+  {
+   "z_mm": 47.6,
+   "y_mm": 640.8,
+   "plush_width_mm": 27.6
+  },
+  {
+   "z_mm": 64.0,
+   "y_mm": 215.9,
+   "plush_width_mm": 28.0
+  },
+  {
+   "z_mm": 64.0,
+   "y_mm": 638.8,
+   "plush_width_mm": 29.0
+  },
+  {
+   "z_mm": 80.3,
+   "y_mm": 217.9,
+   "plush_width_mm": 28.4
+  },
+  {
+   "z_mm": 80.3,
+   "y_mm": 633.7,
+   "plush_width_mm": 29.3
+  },
+  {
+   "z_mm": 96.7,
+   "y_mm": 619.4,
+   "plush_width_mm": 28.8
+  },
+  {
+   "z_mm": 96.7,
+   "y_mm": 219.6,
+   "plush_width_mm": 30.7
+  },
+  {
+   "z_mm": 113.1,
+   "y_mm": 219.6,
+   "plush_width_mm": 33.3
+  },
+  {
+   "z_mm": 113.1,
+   "y_mm": 605.2,
+   "plush_width_mm": 34.1
+  },
+  {
+   "z_mm": 129.5,
+   "y_mm": 218.5,
+   "plush_width_mm": 36.9
+  },
+  {
+   "z_mm": 129.5,
+   "y_mm": 595.9,
+   "plush_width_mm": 41.0
+  }
+ ],
+ "tail": [
+  {
+   "y_mm": 646.7,
+   "plush_width_mm": 30.7,
+   "across_axis": true
+  },
+  {
+   "y_mm": 649.9,
+   "plush_width_mm": 30.9,
+   "across_axis": true
+  },
+  {
+   "y_mm": 653.0,
+   "plush_width_mm": 30.7,
+   "across_axis": true
+  },
+  {
+   "y_mm": 656.2,
+   "plush_width_mm": 30.4,
+   "across_axis": true
+  },
+  {
+   "y_mm": 659.4,
+   "plush_width_mm": 30.0,
+   "across_axis": true
+  }
+ ],
+ "thin_sections": [],
+ "result": "PASS"
+}

@@ -18,13 +18,16 @@ spec, smesh, flab, fdir, pdir, napj, k, pre = sys.argv[1:9]; k = float(k)
 sp_ = json.load(open(spec)); Z = sp_["trim_zones"]
 S = trimesh.load(smesh, process=False); lab = np.load(flab)
 C = S.triangles_center; x, y, z = C.T; y = y - S.vertices[:, 1].min()
-head = np.isin(lab, [1, 2, 3, 4, 21, 22])
-y_line = np.interp(z, [560, 600, 650, 700], [102, 95, 86, 78])
-muzzle = head & ((np.isin(lab, [21, 22])) | ((lab == 1) & (y < 95)) | ((lab == 4) & (y < 120)))
-front_leg = (y > 230) & (y < 430); rear_leg = (y > 690) & (y < 910)
-legs = ((front_leg & (z < 235)) | (rear_leg & (z < 260))) & ~head
-tail = np.isin(lab, [12, 13])
-neck_chest = np.isin(lab, [9, 26]) | (~head & (y < 330) & (z > 430))
+# regions (defaults = Labrador; a breed's finish spec can override them under "regions", real mm, Y from the nose)
+RG = {"head_labels": [1, 2, 3, 4, 21, 22], "muzzle_labels": [21, 22], "gusset_muzzle_y": 95, "chin_muzzle_y": 120,
+      "front_leg_y": [230, 430], "rear_leg_y": [690, 910], "front_leg_z": 235, "rear_leg_z": 260, "tail_labels": [12, 13],
+      "chest_labels": [9, 26], "neck_y": 330, "neck_z": 430, **sp_.get("regions", {})}
+head = np.isin(lab, RG["head_labels"])
+muzzle = head & ((np.isin(lab, RG["muzzle_labels"])) | ((lab == 1) & (y < RG["gusset_muzzle_y"])) | ((lab == 4) & (y < RG["chin_muzzle_y"])))
+front_leg = (y > RG["front_leg_y"][0]) & (y < RG["front_leg_y"][1]); rear_leg = (y > RG["rear_leg_y"][0]) & (y < RG["rear_leg_y"][1])
+legs = ((front_leg & (z < RG["front_leg_z"])) | (rear_leg & (z < RG["rear_leg_z"]))) & ~head
+tail = np.isin(lab, RG["tail_labels"])
+neck_chest = np.isin(lab, RG["chest_labels"]) | (~head & (y < RG["neck_y"]) & (z > RG["neck_z"]))
 zone = np.full(len(C), Z.index(next(q for q in Z if q["zone"] == "body")))
 for name, m_ in [("neck and chest", neck_chest), ("legs", legs), ("tail", tail), ("head and ears", head & ~muzzle), ("muzzle", muzzle)]:
     zone[m_] = Z.index(next(q for q in Z if q["zone"] == name))
