@@ -52,6 +52,6 @@ for k in range(lw):
 dr.text((lx, ly + 30), f"sinks in {LIM:g} mm", font=fs, fill=(60, 60, 60))
 dr.text((lx + lw - 150, ly + 30), f"bulges {LIM:g} mm", font=fs, fill=(60, 60, 60))
 dr.text((lx + lw + 40, ly), "Plush size 350 mm nose to tail. Overall size growth removed so shapes compare.", font=fs, fill=(60, 60, 60))
-dr.text((lx + lw + 40, ly + 30), "Uncalibrated fabric and stuffing values: directions are reliable, sizes are estimates.", font=fs, fill=(60, 60, 60))
+dr.text((lx + lw + 40, ly + 30), "Fabric and stuffing not yet measured: the same trends at both firmness levels, sizes are estimates.", font=fs, fill=(60, 60, 60))
 fig.save(out)
 print("RESULT: PASS", out, fig.size)

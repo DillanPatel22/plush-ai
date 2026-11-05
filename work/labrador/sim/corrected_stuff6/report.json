@@ -1,0 +1,1877 @@
+{
+ "model": {
+  "membrane": "tension-field (kt=1, kc=0.02)",
+  "bending_length_mm": 1.0,
+  "stuffing_sphere_stretch": 0.06,
+  "pressure_rel": 0.003,
+  "merge_radius_mm": 0.1
+ },
+ "assembly": {
+  "pieces": [
+   "P01",
+   "P02",
+   "P03",
+   "P04",
+   "P05",
+   "P06",
+   "P07",
+   "P08",
+   "P09",
+   "P10",
+   "P11",
+   "P12",
+   "P13",
+   "P14",
+   "P15",
+   "P16",
+   "P17",
+   "P18"
+  ],
+  "vertices": 43878,
+  "triangles": 87752,
+  "open_edges": 0,
+  "non_manifold_edges": 0,
+  "collapsed_triangles": 0,
+  "target_volume_l": 2.999
+ },
+ "seams_before": {
+  "P01|P06": {
+   "len_mm": [
+    44.8,
+    45.7
+   ],
+   "mismatch_pct": 2.14
+  },
+  "P01|P05": {
+   "len_mm": [
+    44.8,
+    45.7
+   ],
+   "mismatch_pct": 2.14
+  },
+  "P01|P03": {
+   "len_mm": [
+    102.3,
+    108.9
+   ],
+   "mismatch_pct": 6.03
+  },
+  "P01|P02": {
+   "len_mm": [
+    102.3,
+    108.9
+   ],
+   "mismatch_pct": 6.03
+  },
+  "P01|P08": {
+   "len_mm": [
+    10.8,
+    10.8
+   ],
+   "mismatch_pct": 0.05
+  },
+  "P01|P07": {
+   "len_mm": [
+    10.8,
+    10.8
+   ],
+   "mismatch_pct": 0.05
+  },
+  "P07|P08": {
+   "len_mm": [
+    304.5,
+    304.5
+   ],
+   "mismatch_pct": 0.0
+  },
+  "P03|P06": {
+   "len_mm": [
+    60.2,
+    60.6
+   ],
+   "mismatch_pct": 0.65
+  },
+  "P02|P05": {
+   "len_mm": [
+    60.2,
+    60.6
+   ],
+   "mismatch_pct": 0.65
+  },
+  "P03|P08": {
+   "len_mm": [
+    88.8,
+    85.4
+   ],
+   "mismatch_pct": 3.86
+  },
+  "P02|P07": {
+   "len_mm": [
+    88.8,
+    85.4
+   ],
+   "mismatch_pct": 3.86
+  },
+  "P02|P04": {
+   "len_mm": [
+    53.0,
+    50.6
+   ],
+   "mismatch_pct": 4.57
+  },
+  "P02|P09": {
+   "len_mm": [
+    21.7,
+    21.6
+   ],
+   "mismatch_pct": 0.52
+  },
+  "P04|P05": {
+   "len_mm": [
+    58.4,
+    62.9
+   ],
+   "mismatch_pct": 7.07
+  },
+  "P07|P09": {
+   "len_mm": [
+    172.3,
+    178.5
+   ],
+   "mismatch_pct": 3.46
+  },
+  "P03|P04": {
+   "len_mm": [
+    53.0,
+    50.5
+   ],
+   "mismatch_pct": 4.6
+  },
+  "P03|P10": {
+   "len_mm": [
+    21.7,
+    21.6
+   ],
+   "mismatch_pct": 0.52
+  },
+  "P04|P06": {
+   "len_mm": [
+    58.4,
+    62.9
+   ],
+   "mismatch_pct": 7.12
+  },
+  "P08|P10": {
+   "len_mm": [
+    172.3,
+    178.5
+   ],
+   "mismatch_pct": 3.46
+  },
+  "P09|P10": {
+   "len_mm": [
+    118.9,
+    118.9
+   ],
+   "mismatch_pct": 0.0
+  },
+  "P07|P11": {
+   "len_mm": [
+    677.4,
+    673.0
+   ],
+   "mismatch_pct": 0.66
+  },
+  "P07|P13": {
+   "len_mm": [
+    58.1,
+    55.3
+   ],
+   "mismatch_pct": 4.82
+  },
+  "P11|P13": {
+   "len_mm": [
+    58.7,
+    56.2
+   ],
+   "mismatch_pct": 4.2
+  },
+  "P07|P15": {
+   "len_mm": [
+    65.2,
+    60.1
+   ],
+   "mismatch_pct": 7.69
+  },
+  "P07|P17": {
+   "len_mm": [
+    56.9,
+    50.3
+   ],
+   "mismatch_pct": 11.5
+  },
+  "P08|P18": {
+   "len_mm": [
+    56.9,
+    50.3
+   ],
+   "mismatch_pct": 11.5
+  },
+  "P17|P18": {
+   "len_mm": [
+    211.3,
+    211.3
+   ],
+   "mismatch_pct": 0.0
+  },
+  "P09|P11": {
+   "len_mm": [
+    42.0,
+    40.4
+   ],
+   "mismatch_pct": 3.8
+  },
+  "P11|P15": {
+   "len_mm": [
+    45.2,
+    42.0
+   ],
+   "mismatch_pct": 7.13
+  },
+  "P08|P12": {
+   "len_mm": [
+    677.4,
+    673.0
+   ],
+   "mismatch_pct": 0.66
+  },
+  "P11|P12": {
+   "len_mm": [
+    217.7,
+    217.7
+   ],
+   "mismatch_pct": 0.0
+  },
+  "P08|P14": {
+   "len_mm": [
+    58.1,
+    55.3
+   ],
+   "mismatch_pct": 4.82
+  },
+  "P12|P14": {
+   "len_mm": [
+    58.7,
+    56.2
+   ],
+   "mismatch_pct": 4.2
+  },
+  "P08|P16": {
+   "len_mm": [
+    65.2,
+    60.1
+   ],
+   "mismatch_pct": 7.69
+  },
+  "P10|P12": {
+   "len_mm": [
+    42.0,
+    40.4
+   ],
+   "mismatch_pct": 3.8
+  },
+  "P12|P16": {
+   "len_mm": [
+    45.2,
+    42.0
+   ],
+   "mismatch_pct": 7.13
+  }
+ },
+ "as_cut": {
+  "label": "sewn as cut",
+  "size_change_pct": 12.28,
+  "volume_change_pct": 54.21,
+  "shape_dev_mm": {
+   "mean": 8.6,
+   "p95": 19.48,
+   "max": 33.05
+  },
+  "shape_dev_parts_aligned_mm": {
+   "mean": 5.14,
+   "p95": 11.26
+  },
+  "parts": {
+   "head": {
+    "tilt_deg": 3.7,
+    "shift_mm": 3.9,
+    "shape_dev_p95_mm": 8.55
+   },
+   "body": {
+    "tilt_deg": 0.6,
+    "shift_mm": 2.8,
+    "shape_dev_p95_mm": 12.35
+   },
+   "tail": {
+    "tilt_deg": 2.1,
+    "shift_mm": 13.5,
+    "shape_dev_p95_mm": 6.84
+   },
+   "front leg R": {
+    "tilt_deg": 5.8,
+    "shift_mm": 10.6,
+    "shape_dev_p95_mm": 6.91
+   },
+   "front leg L": {
+    "tilt_deg": 5.8,
+    "shift_mm": 10.6,
+    "shape_dev_p95_mm": 6.91
+   },
+   "hind leg R": {
+    "tilt_deg": 14.1,
+    "shift_mm": 16.9,
+    "shape_dev_p95_mm": 7.68
+   },
+   "hind leg L": {
+    "tilt_deg": 14.1,
+    "shift_mm": 16.9,
+    "shape_dev_p95_mm": 7.68
+   }
+  },
+  "concave_areas_fill_in_mm": 3.64,
+  "convex_areas_move_mm": -3.59,
+  "silhouette_iou": {
+   "side": 0.8594,
+   "front": 0.7627,
+   "top": 0.8347
+  },
+  "key_widths": {
+   "muzzle (between nose and eyes)": {
+    "width_mm": {
+     "target": 35.5,
+     "sewn": 34.0,
+     "change_pct": -4.2
+    },
+    "height_mm": {
+     "target": 40.4,
+     "sewn": 34.5,
+     "change_pct": -14.5
+    }
+   },
+   "head at the eyes": {
+    "width_mm": {
+     "target": 44.0,
+     "sewn": 48.8,
+     "change_pct": 10.9
+    },
+    "height_mm": {
+     "target": 66.3,
+     "sewn": 58.0,
+     "change_pct": -12.6
+    }
+   },
+   "skull behind the eyes": {
+    "width_mm": {
+     "target": 62.1,
+     "sewn": 67.1,
+     "change_pct": 8.1
+    },
+    "height_mm": {
+     "target": 97.1,
+     "sewn": 90.9,
+     "change_pct": -6.4
+    }
+   },
+   "chest at the front legs": {
+    "width_mm": {
+     "target": 102.5,
+     "sewn": 123.2,
+     "change_pct": 20.1
+    },
+    "height_mm": {
+     "target": 151.0,
+     "sewn": 147.4,
+     "change_pct": -2.4
+    }
+   },
+   "waist": {
+    "width_mm": {
+     "target": 98.8,
+     "sewn": 107.4,
+     "change_pct": 8.7
+    },
+    "height_mm": {
+     "target": 110.4,
+     "sewn": 109.1,
+     "change_pct": -1.1
+    }
+   },
+   "hips at the hind legs": {
+    "width_mm": {
+     "target": 92.7,
+     "sewn": 105.6,
+     "change_pct": 13.9
+    },
+    "height_mm": {
+     "target": 107.1,
+     "sewn": 106.0,
+     "change_pct": -1.1
+    }
+   },
+   "front leg (half elbow height)": {
+    "width_mm": {
+     "target": 26.8,
+     "sewn": 24.3,
+     "change_pct": -9.3
+    },
+    "depth_mm": {
+     "target": 28.7,
+     "sewn": 25.3,
+     "change_pct": -11.8
+    }
+   },
+   "hind leg (half elbow height)": {
+    "width_mm": {
+     "target": 28.1,
+     "sewn": 24.1,
+     "change_pct": -14.3
+    },
+    "depth_mm": {
+     "target": 31.9,
+     "sewn": 28.1,
+     "change_pct": -12.1
+    }
+   }
+  },
+  "pieces": {
+   "P01": {
+    "name": "head gusset",
+    "dev_p95_mm": 11.9,
+    "dev_p95_part_aligned_mm": 8.49,
+    "bulge_out_max_mm": 2.31,
+    "sink_in_max_mm": 15.06
+   },
+   "P02": {
+    "name": "side head R",
+    "dev_p95_mm": 8.69,
+    "dev_p95_part_aligned_mm": 7.82,
+    "bulge_out_max_mm": 12.16,
+    "sink_in_max_mm": 9.71
+   },
+   "P04": {
+    "name": "chin gusset",
+    "dev_p95_mm": 12.52,
+    "dev_p95_part_aligned_mm": 8.7,
+    "bulge_out_max_mm": 2.98,
+    "sink_in_max_mm": 13.72
+   },
+   "P05": {
+    "name": "muzzle side R",
+    "dev_p95_mm": 12.49,
+    "dev_p95_part_aligned_mm": 8.9,
+    "bulge_out_max_mm": 4.22,
+    "sink_in_max_mm": 14.84
+   },
+   "P07": {
+    "name": "body side R (with outside of legs)",
+    "dev_p95_mm": 17.46,
+    "dev_p95_part_aligned_mm": 12.26,
+    "bulge_out_max_mm": 21.85,
+    "sink_in_max_mm": 28.3
+   },
+   "P09": {
+    "name": "chest R",
+    "dev_p95_mm": 10.75,
+    "dev_p95_part_aligned_mm": 10.97,
+    "bulge_out_max_mm": 14.58,
+    "sink_in_max_mm": 5.18
+   },
+   "P11": {
+    "name": "underbody R (belly, inside of legs)",
+    "dev_p95_mm": 25.49,
+    "dev_p95_part_aligned_mm": 8.34,
+    "bulge_out_max_mm": 21.85,
+    "sink_in_max_mm": 32.14
+   },
+   "P13": {
+    "name": "sole front R",
+    "dev_p95_mm": 18.25,
+    "dev_p95_part_aligned_mm": 7.75,
+    "bulge_out_max_mm": -4.88,
+    "sink_in_max_mm": 18.07
+   },
+   "P15": {
+    "name": "sole hind R",
+    "dev_p95_mm": 31.09,
+    "dev_p95_part_aligned_mm": 7.26,
+    "bulge_out_max_mm": -5.25,
+    "sink_in_max_mm": 24.01
+   },
+   "P17": {
+    "name": "tail R",
+    "dev_p95_mm": 19.97,
+    "dev_p95_part_aligned_mm": 6.84,
+    "bulge_out_max_mm": 2.64,
+    "sink_in_max_mm": 21.3
+   }
+  },
+  "converged": true,
+  "fabric_slack_share": 0.243,
+  "fabric_stretch": {
+   "median_pct": 8.66,
+   "p95_pct": 25.39,
+   "compressed_share": 0.159
+  }
+ },
+ "compensated": {
+  "label": "compensated round 5",
+  "size_change_pct": -1.96,
+  "volume_change_pct": -3.65,
+  "shape_dev_mm": {
+   "mean": 4.75,
+   "p95": 10.64,
+   "max": 17.27
+  },
+  "shape_dev_parts_aligned_mm": {
+   "mean": 3.36,
+   "p95": 7.65
+  },
+  "parts": {
+   "head": {
+    "tilt_deg": 0.9,
+    "shift_mm": 1.5,
+    "shape_dev_p95_mm": 6.13
+   },
+   "body": {
+    "tilt_deg": 0.2,
+    "shift_mm": 0.9,
+    "shape_dev_p95_mm": 8.56
+   },
+   "tail": {
+    "tilt_deg": 2.0,
+    "shift_mm": 9.3,
+    "shape_dev_p95_mm": 5.35
+   },
+   "front leg R": {
+    "tilt_deg": 3.8,
+    "shift_mm": 3.8,
+    "shape_dev_p95_mm": 3.79
+   },
+   "front leg L": {
+    "tilt_deg": 3.7,
+    "shift_mm": 3.8,
+    "shape_dev_p95_mm": 3.79
+   },
+   "hind leg R": {
+    "tilt_deg": 8.9,
+    "shift_mm": 6.9,
+    "shape_dev_p95_mm": 4.31
+   },
+   "hind leg L": {
+    "tilt_deg": 8.9,
+    "shift_mm": 6.9,
+    "shape_dev_p95_mm": 4.31
+   }
+  },
+  "concave_areas_fill_in_mm": 1.79,
+  "convex_areas_move_mm": -2.1,
+  "silhouette_iou": {
+   "side": 0.906,
+   "front": 0.8892,
+   "top": 0.8887
+  },
+  "key_widths": {
+   "muzzle (between nose and eyes)": {
+    "width_mm": {
+     "target": 35.5,
+     "sewn": 35.4,
+     "change_pct": -0.3
+    },
+    "height_mm": {
+     "target": 40.4,
+     "sewn": 36.3,
+     "change_pct": -10.1
+    }
+   },
+   "head at the eyes": {
+    "width_mm": {
+     "target": 44.0,
+     "sewn": 50.3,
+     "change_pct": 14.1
+    },
+    "height_mm": {
+     "target": 66.3,
+     "sewn": 60.5,
+     "change_pct": -8.8
+    }
+   },
+   "skull behind the eyes": {
+    "width_mm": {
+     "target": 62.1,
+     "sewn": 67.4,
+     "change_pct": 8.5
+    },
+    "height_mm": {
+     "target": 97.1,
+     "sewn": 95.6,
+     "change_pct": -1.5
+    }
+   },
+   "chest at the front legs": {
+    "width_mm": {
+     "target": 102.5,
+     "sewn": 115.2,
+     "change_pct": 12.3
+    },
+    "height_mm": {
+     "target": 151.0,
+     "sewn": 147.1,
+     "change_pct": -2.6
+    }
+   },
+   "waist": {
+    "width_mm": {
+     "target": 98.8,
+     "sewn": 99.5,
+     "change_pct": 0.7
+    },
+    "height_mm": {
+     "target": 110.4,
+     "sewn": 103.8,
+     "change_pct": -6.0
+    }
+   },
+   "hips at the hind legs": {
+    "width_mm": {
+     "target": 92.7,
+     "sewn": 98.7,
+     "change_pct": 6.5
+    },
+    "height_mm": {
+     "target": 107.1,
+     "sewn": 113.9,
+     "change_pct": 6.4
+    }
+   },
+   "front leg (half elbow height)": {
+    "width_mm": {
+     "target": 26.8,
+     "sewn": 25.6,
+     "change_pct": -4.4
+    },
+    "depth_mm": {
+     "target": 28.7,
+     "sewn": 26.7,
+     "change_pct": -7.0
+    }
+   },
+   "hind leg (half elbow height)": {
+    "width_mm": {
+     "target": 28.1,
+     "sewn": 24.7,
+     "change_pct": -12.3
+    },
+    "depth_mm": {
+     "target": 31.9,
+     "sewn": 29.1,
+     "change_pct": -8.8
+    }
+   }
+  },
+  "pieces": {
+   "P01": {
+    "name": "head gusset",
+    "dev_p95_mm": 5.1,
+    "dev_p95_part_aligned_mm": 6.0,
+    "bulge_out_max_mm": 1.83,
+    "sink_in_max_mm": 8.56
+   },
+   "P02": {
+    "name": "side head R",
+    "dev_p95_mm": 6.03,
+    "dev_p95_part_aligned_mm": 5.83,
+    "bulge_out_max_mm": 10.38,
+    "sink_in_max_mm": 5.22
+   },
+   "P04": {
+    "name": "chin gusset",
+    "dev_p95_mm": 7.26,
+    "dev_p95_part_aligned_mm": 6.11,
+    "bulge_out_max_mm": 1.79,
+    "sink_in_max_mm": 7.73
+   },
+   "P05": {
+    "name": "muzzle side R",
+    "dev_p95_mm": 7.59,
+    "dev_p95_part_aligned_mm": 6.41,
+    "bulge_out_max_mm": 4.51,
+    "sink_in_max_mm": 8.21
+   },
+   "P07": {
+    "name": "body side R (with outside of legs)",
+    "dev_p95_mm": 9.69,
+    "dev_p95_part_aligned_mm": 8.11,
+    "bulge_out_max_mm": 13.06,
+    "sink_in_max_mm": 10.43
+   },
+   "P09": {
+    "name": "chest R",
+    "dev_p95_mm": 8.54,
+    "dev_p95_part_aligned_mm": 8.71,
+    "bulge_out_max_mm": 13.22,
+    "sink_in_max_mm": 5.44
+   },
+   "P11": {
+    "name": "underbody R (belly, inside of legs)",
+    "dev_p95_mm": 12.86,
+    "dev_p95_part_aligned_mm": 7.48,
+    "bulge_out_max_mm": 12.34,
+    "sink_in_max_mm": 15.91
+   },
+   "P13": {
+    "name": "sole front R",
+    "dev_p95_mm": 8.2,
+    "dev_p95_part_aligned_mm": 3.86,
+    "bulge_out_max_mm": 0.67,
+    "sink_in_max_mm": 10.43
+   },
+   "P15": {
+    "name": "sole hind R",
+    "dev_p95_mm": 15.07,
+    "dev_p95_part_aligned_mm": 4.08,
+    "bulge_out_max_mm": 2.16,
+    "sink_in_max_mm": 9.91
+   },
+   "P17": {
+    "name": "tail R",
+    "dev_p95_mm": 14.07,
+    "dev_p95_part_aligned_mm": 5.32,
+    "bulge_out_max_mm": 4.34,
+    "sink_in_max_mm": 15.24
+   }
+  },
+  "seam_mismatch_max_pct": 7.94,
+  "fabric_slack_share": 0.377,
+  "outline_change_pct_range": [
+   -8.3,
+   0.1
+  ],
+  "converged": true,
+  "round": 5
+ },
+ "compensation_history": [
+  {
+   "size_change_pct": 1.28,
+   "shape_dev_mm": {
+    "mean": 6.16,
+    "p95": 16.81,
+    "max": 27.15
+   },
+   "shape_dev_parts_aligned_mm": {
+    "mean": 3.87,
+    "p95": 8.64
+   },
+   "parts": {
+    "head": {
+     "tilt_deg": 0.2,
+     "shift_mm": 1.5,
+     "shape_dev_p95_mm": 7.2
+    },
+    "body": {
+     "tilt_deg": 0.4,
+     "shift_mm": 1.3,
+     "shape_dev_p95_mm": 9.64
+    },
+    "tail": {
+     "tilt_deg": 5.1,
+     "shift_mm": 12.2,
+     "shape_dev_p95_mm": 5.32
+    },
+    "front leg R": {
+     "tilt_deg": 1.6,
+     "shift_mm": 4.4,
+     "shape_dev_p95_mm": 4.29
+    },
+    "front leg L": {
+     "tilt_deg": 1.6,
+     "shift_mm": 4.4,
+     "shape_dev_p95_mm": 4.29
+    },
+    "hind leg R": {
+     "tilt_deg": 12.5,
+     "shift_mm": 13.5,
+     "shape_dev_p95_mm": 5.16
+    },
+    "hind leg L": {
+     "tilt_deg": 12.5,
+     "shift_mm": 13.5,
+     "shape_dev_p95_mm": 5.16
+    }
+   },
+   "concave_areas_fill_in_mm": 2.46,
+   "silhouette_iou": {
+    "side": 0.8985,
+    "front": 0.8283,
+    "top": 0.8636
+   },
+   "key_widths": {
+    "muzzle (between nose and eyes)": {
+     "width_mm": {
+      "target": 35.5,
+      "sewn": 34.7,
+      "change_pct": -2.1
+     },
+     "height_mm": {
+      "target": 40.4,
+      "sewn": 35.5,
+      "change_pct": -12.2
+     }
+    },
+    "head at the eyes": {
+     "width_mm": {
+      "target": 44.0,
+      "sewn": 49.4,
+      "change_pct": 12.3
+     },
+     "height_mm": {
+      "target": 66.3,
+      "sewn": 59.0,
+      "change_pct": -11.1
+     }
+    },
+    "skull behind the eyes": {
+     "width_mm": {
+      "target": 62.1,
+      "sewn": 66.7,
+      "change_pct": 7.3
+     },
+     "height_mm": {
+      "target": 97.1,
+      "sewn": 93.4,
+      "change_pct": -3.9
+     }
+    },
+    "chest at the front legs": {
+     "width_mm": {
+      "target": 102.5,
+      "sewn": 117.4,
+      "change_pct": 14.5
+     },
+     "height_mm": {
+      "target": 151.0,
+      "sewn": 148.2,
+      "change_pct": -1.9
+     }
+    },
+    "waist": {
+     "width_mm": {
+      "target": 98.8,
+      "sewn": 102.6,
+      "change_pct": 3.8
+     },
+     "height_mm": {
+      "target": 110.4,
+      "sewn": 104.3,
+      "change_pct": -5.5
+     }
+    },
+    "hips at the hind legs": {
+     "width_mm": {
+      "target": 92.7,
+      "sewn": 102.7,
+      "change_pct": 10.8
+     },
+     "height_mm": {
+      "target": 107.1,
+      "sewn": 111.8,
+      "change_pct": 4.4
+     }
+    },
+    "front leg (half elbow height)": {
+     "width_mm": {
+      "target": 26.8,
+      "sewn": 25.4,
+      "change_pct": -5.1
+     },
+     "depth_mm": {
+      "target": 28.7,
+      "sewn": 26.5,
+      "change_pct": -7.7
+     }
+    },
+    "hind leg (half elbow height)": {
+     "width_mm": {
+      "target": 28.1,
+      "sewn": 24.6,
+      "change_pct": -12.6
+     },
+     "depth_mm": {
+      "target": 31.9,
+      "sewn": 28.9,
+      "change_pct": -9.4
+     }
+    }
+   },
+   "seam_mismatch_max_pct": 8.23,
+   "fabric_slack_share": 0.317,
+   "outline_change_pct_range": [
+    -7.2,
+    1.0
+   ]
+  },
+  {
+   "size_change_pct": -1.13,
+   "shape_dev_mm": {
+    "mean": 5.41,
+    "p95": 14.24,
+    "max": 22.24
+   },
+   "shape_dev_parts_aligned_mm": {
+    "mean": 3.56,
+    "p95": 8.12
+   },
+   "parts": {
+    "head": {
+     "tilt_deg": 0.3,
+     "shift_mm": 1.3,
+     "shape_dev_p95_mm": 6.48
+    },
+    "body": {
+     "tilt_deg": 0.1,
+     "shift_mm": 0.8,
+     "shape_dev_p95_mm": 9.04
+    },
+    "tail": {
+     "tilt_deg": 8.3,
+     "shift_mm": 12.0,
+     "shape_dev_p95_mm": 5.37
+    },
+    "front leg R": {
+     "tilt_deg": 2.4,
+     "shift_mm": 3.6,
+     "shape_dev_p95_mm": 4.09
+    },
+    "front leg L": {
+     "tilt_deg": 2.4,
+     "shift_mm": 3.6,
+     "shape_dev_p95_mm": 4.09
+    },
+    "hind leg R": {
+     "tilt_deg": 10.3,
+     "shift_mm": 10.4,
+     "shape_dev_p95_mm": 4.49
+    },
+    "hind leg L": {
+     "tilt_deg": 10.3,
+     "shift_mm": 10.4,
+     "shape_dev_p95_mm": 4.49
+    }
+   },
+   "concave_areas_fill_in_mm": 2.08,
+   "silhouette_iou": {
+    "side": 0.9102,
+    "front": 0.8618,
+    "top": 0.8749
+   },
+   "key_widths": {
+    "muzzle (between nose and eyes)": {
+     "width_mm": {
+      "target": 35.5,
+      "sewn": 35.2,
+      "change_pct": -0.7
+     },
+     "height_mm": {
+      "target": 40.4,
+      "sewn": 36.0,
+      "change_pct": -10.7
+     }
+    },
+    "head at the eyes": {
+     "width_mm": {
+      "target": 44.0,
+      "sewn": 50.0,
+      "change_pct": 13.6
+     },
+     "height_mm": {
+      "target": 66.3,
+      "sewn": 59.9,
+      "change_pct": -9.7
+     }
+    },
+    "skull behind the eyes": {
+     "width_mm": {
+      "target": 62.1,
+      "sewn": 67.2,
+      "change_pct": 8.2
+     },
+     "height_mm": {
+      "target": 97.1,
+      "sewn": 94.6,
+      "change_pct": -2.6
+     }
+    },
+    "chest at the front legs": {
+     "width_mm": {
+      "target": 102.5,
+      "sewn": 116.2,
+      "change_pct": 13.3
+     },
+     "height_mm": {
+      "target": 151.0,
+      "sewn": 148.0,
+      "change_pct": -2.0
+     }
+    },
+    "waist": {
+     "width_mm": {
+      "target": 98.8,
+      "sewn": 100.6,
+      "change_pct": 1.9
+     },
+     "height_mm": {
+      "target": 110.4,
+      "sewn": 103.3,
+      "change_pct": -6.4
+     }
+    },
+    "hips at the hind legs": {
+     "width_mm": {
+      "target": 92.7,
+      "sewn": 101.0,
+      "change_pct": 9.0
+     },
+     "height_mm": {
+      "target": 107.1,
+      "sewn": 113.3,
+      "change_pct": 5.8
+     }
+    },
+    "front leg (half elbow height)": {
+     "width_mm": {
+      "target": 26.8,
+      "sewn": 25.6,
+      "change_pct": -4.4
+     },
+     "depth_mm": {
+      "target": 28.7,
+      "sewn": 26.7,
+      "change_pct": -7.0
+     }
+    },
+    "hind leg (half elbow height)": {
+     "width_mm": {
+      "target": 28.1,
+      "sewn": 24.7,
+      "change_pct": -12.1
+     },
+     "depth_mm": {
+      "target": 31.9,
+      "sewn": 29.2,
+      "change_pct": -8.6
+     }
+    }
+   },
+   "seam_mismatch_max_pct": 7.92,
+   "fabric_slack_share": 0.35,
+   "outline_change_pct_range": [
+    -7.7,
+    0.4
+   ]
+  },
+  {
+   "size_change_pct": -1.67,
+   "shape_dev_mm": {
+    "mean": 5.03,
+    "p95": 12.0,
+    "max": 19.54
+   },
+   "shape_dev_parts_aligned_mm": {
+    "mean": 3.45,
+    "p95": 7.91
+   },
+   "parts": {
+    "head": {
+     "tilt_deg": 0.7,
+     "shift_mm": 1.5,
+     "shape_dev_p95_mm": 6.29
+    },
+    "body": {
+     "tilt_deg": 0.2,
+     "shift_mm": 0.8,
+     "shape_dev_p95_mm": 8.82
+    },
+    "tail": {
+     "tilt_deg": 3.2,
+     "shift_mm": 10.3,
+     "shape_dev_p95_mm": 5.47
+    },
+    "front leg R": {
+     "tilt_deg": 3.1,
+     "shift_mm": 3.6,
+     "shape_dev_p95_mm": 3.91
+    },
+    "front leg L": {
+     "tilt_deg": 3.1,
+     "shift_mm": 3.6,
+     "shape_dev_p95_mm": 3.91
+    },
+    "hind leg R": {
+     "tilt_deg": 9.3,
+     "shift_mm": 8.6,
+     "shape_dev_p95_mm": 4.37
+    },
+    "hind leg L": {
+     "tilt_deg": 9.3,
+     "shift_mm": 8.6,
+     "shape_dev_p95_mm": 4.37
+    }
+   },
+   "concave_areas_fill_in_mm": 1.92,
+   "silhouette_iou": {
+    "side": 0.9113,
+    "front": 0.8766,
+    "top": 0.8813
+   },
+   "key_widths": {
+    "muzzle (between nose and eyes)": {
+     "width_mm": {
+      "target": 35.5,
+      "sewn": 35.3,
+      "change_pct": -0.4
+     },
+     "height_mm": {
+      "target": 40.4,
+      "sewn": 36.2,
+      "change_pct": -10.4
+     }
+    },
+    "head at the eyes": {
+     "width_mm": {
+      "target": 44.0,
+      "sewn": 50.2,
+      "change_pct": 13.9
+     },
+     "height_mm": {
+      "target": 66.3,
+      "sewn": 60.2,
+      "change_pct": -9.2
+     }
+    },
+    "skull behind the eyes": {
+     "width_mm": {
+      "target": 62.1,
+      "sewn": 67.3,
+      "change_pct": 8.3
+     },
+     "height_mm": {
+      "target": 97.1,
+      "sewn": 95.1,
+      "change_pct": -2.0
+     }
+    },
+    "chest at the front legs": {
+     "width_mm": {
+      "target": 102.5,
+      "sewn": 115.7,
+      "change_pct": 12.9
+     },
+     "height_mm": {
+      "target": 151.0,
+      "sewn": 147.6,
+      "change_pct": -2.3
+     }
+    },
+    "waist": {
+     "width_mm": {
+      "target": 98.8,
+      "sewn": 99.9,
+      "change_pct": 1.2
+     },
+     "height_mm": {
+      "target": 110.4,
+      "sewn": 103.3,
+      "change_pct": -6.4
+     }
+    },
+    "hips at the hind legs": {
+     "width_mm": {
+      "target": 92.7,
+      "sewn": 99.9,
+      "change_pct": 7.8
+     },
+     "height_mm": {
+      "target": 107.1,
+      "sewn": 113.7,
+      "change_pct": 6.1
+     }
+    },
+    "front leg (half elbow height)": {
+     "width_mm": {
+      "target": 26.8,
+      "sewn": 25.6,
+      "change_pct": -4.4
+     },
+     "depth_mm": {
+      "target": 28.7,
+      "sewn": 26.7,
+      "change_pct": -7.0
+     }
+    },
+    "hind leg (half elbow height)": {
+     "width_mm": {
+      "target": 28.1,
+      "sewn": 24.7,
+      "change_pct": -12.2
+     },
+     "depth_mm": {
+      "target": 31.9,
+      "sewn": 29.2,
+      "change_pct": -8.7
+     }
+    }
+   },
+   "seam_mismatch_max_pct": 7.93,
+   "fabric_slack_share": 0.365,
+   "outline_change_pct_range": [
+    -8.1,
+    0.2
+   ]
+  },
+  {
+   "size_change_pct": -1.82,
+   "shape_dev_mm": {
+    "mean": 4.85,
+    "p95": 11.12,
+    "max": 18.11
+   },
+   "shape_dev_parts_aligned_mm": {
+    "mean": 3.4,
+    "p95": 7.77
+   },
+   "parts": {
+    "head": {
+     "tilt_deg": 0.8,
+     "shift_mm": 1.5,
+     "shape_dev_p95_mm": 6.2
+    },
+    "body": {
+     "tilt_deg": 0.2,
+     "shift_mm": 0.9,
+     "shape_dev_p95_mm": 8.68
+    },
+    "tail": {
+     "tilt_deg": 0.7,
+     "shift_mm": 9.6,
+     "shape_dev_p95_mm": 5.38
+    },
+    "front leg R": {
+     "tilt_deg": 3.5,
+     "shift_mm": 3.8,
+     "shape_dev_p95_mm": 3.85
+    },
+    "front leg L": {
+     "tilt_deg": 3.5,
+     "shift_mm": 3.8,
+     "shape_dev_p95_mm": 3.85
+    },
+    "hind leg R": {
+     "tilt_deg": 9.0,
+     "shift_mm": 7.6,
+     "shape_dev_p95_mm": 4.33
+    },
+    "hind leg L": {
+     "tilt_deg": 9.0,
+     "shift_mm": 7.6,
+     "shape_dev_p95_mm": 4.33
+    }
+   },
+   "concave_areas_fill_in_mm": 1.83,
+   "silhouette_iou": {
+    "side": 0.9068,
+    "front": 0.8846,
+    "top": 0.8864
+   },
+   "key_widths": {
+    "muzzle (between nose and eyes)": {
+     "width_mm": {
+      "target": 35.5,
+      "sewn": 35.3,
+      "change_pct": -0.4
+     },
+     "height_mm": {
+      "target": 40.4,
+      "sewn": 36.2,
+      "change_pct": -10.2
+     }
+    },
+    "head at the eyes": {
+     "width_mm": {
+      "target": 44.0,
+      "sewn": 50.2,
+      "change_pct": 14.1
+     },
+     "height_mm": {
+      "target": 66.3,
+      "sewn": 60.4,
+      "change_pct": -9.0
+     }
+    },
+    "skull behind the eyes": {
+     "width_mm": {
+      "target": 62.1,
+      "sewn": 67.4,
+      "change_pct": 8.5
+     },
+     "height_mm": {
+      "target": 97.1,
+      "sewn": 95.4,
+      "change_pct": -1.7
+     }
+    },
+    "chest at the front legs": {
+     "width_mm": {
+      "target": 102.5,
+      "sewn": 115.4,
+      "change_pct": 12.5
+     },
+     "height_mm": {
+      "target": 151.0,
+      "sewn": 147.3,
+      "change_pct": -2.5
+     }
+    },
+    "waist": {
+     "width_mm": {
+      "target": 98.8,
+      "sewn": 99.6,
+      "change_pct": 0.8
+     },
+     "height_mm": {
+      "target": 110.4,
+      "sewn": 103.5,
+      "change_pct": -6.2
+     }
+    },
+    "hips at the hind legs": {
+     "width_mm": {
+      "target": 92.7,
+      "sewn": 99.2,
+      "change_pct": 7.0
+     },
+     "height_mm": {
+      "target": 107.1,
+      "sewn": 113.9,
+      "change_pct": 6.4
+     }
+    },
+    "front leg (half elbow height)": {
+     "width_mm": {
+      "target": 26.8,
+      "sewn": 25.6,
+      "change_pct": -4.5
+     },
+     "depth_mm": {
+      "target": 28.7,
+      "sewn": 26.7,
+      "change_pct": -7.1
+     }
+    },
+    "hind leg (half elbow height)": {
+     "width_mm": {
+      "target": 28.1,
+      "sewn": 24.7,
+      "change_pct": -12.3
+     },
+     "depth_mm": {
+      "target": 31.9,
+      "sewn": 29.1,
+      "change_pct": -8.8
+     }
+    }
+   },
+   "seam_mismatch_max_pct": 7.94,
+   "fabric_slack_share": 0.372,
+   "outline_change_pct_range": [
+    -8.2,
+    0.1
+   ]
+  },
+  {
+   "size_change_pct": -1.96,
+   "shape_dev_mm": {
+    "mean": 4.75,
+    "p95": 10.64,
+    "max": 17.27
+   },
+   "shape_dev_parts_aligned_mm": {
+    "mean": 3.36,
+    "p95": 7.65
+   },
+   "parts": {
+    "head": {
+     "tilt_deg": 0.9,
+     "shift_mm": 1.5,
+     "shape_dev_p95_mm": 6.13
+    },
+    "body": {
+     "tilt_deg": 0.2,
+     "shift_mm": 0.9,
+     "shape_dev_p95_mm": 8.56
+    },
+    "tail": {
+     "tilt_deg": 2.0,
+     "shift_mm": 9.3,
+     "shape_dev_p95_mm": 5.35
+    },
+    "front leg R": {
+     "tilt_deg": 3.8,
+     "shift_mm": 3.8,
+     "shape_dev_p95_mm": 3.79
+    },
+    "front leg L": {
+     "tilt_deg": 3.7,
+     "shift_mm": 3.8,
+     "shape_dev_p95_mm": 3.79
+    },
+    "hind leg R": {
+     "tilt_deg": 8.9,
+     "shift_mm": 6.9,
+     "shape_dev_p95_mm": 4.31
+    },
+    "hind leg L": {
+     "tilt_deg": 8.9,
+     "shift_mm": 6.9,
+     "shape_dev_p95_mm": 4.31
+    }
+   },
+   "concave_areas_fill_in_mm": 1.79,
+   "silhouette_iou": {
+    "side": 0.906,
+    "front": 0.8892,
+    "top": 0.8887
+   },
+   "key_widths": {
+    "muzzle (between nose and eyes)": {
+     "width_mm": {
+      "target": 35.5,
+      "sewn": 35.4,
+      "change_pct": -0.3
+     },
+     "height_mm": {
+      "target": 40.4,
+      "sewn": 36.3,
+      "change_pct": -10.1
+     }
+    },
+    "head at the eyes": {
+     "width_mm": {
+      "target": 44.0,
+      "sewn": 50.3,
+      "change_pct": 14.1
+     },
+     "height_mm": {
+      "target": 66.3,
+      "sewn": 60.5,
+      "change_pct": -8.8
+     }
+    },
+    "skull behind the eyes": {
+     "width_mm": {
+      "target": 62.1,
+      "sewn": 67.4,
+      "change_pct": 8.5
+     },
+     "height_mm": {
+      "target": 97.1,
+      "sewn": 95.6,
+      "change_pct": -1.5
+     }
+    },
+    "chest at the front legs": {
+     "width_mm": {
+      "target": 102.5,
+      "sewn": 115.2,
+      "change_pct": 12.3
+     },
+     "height_mm": {
+      "target": 151.0,
+      "sewn": 147.1,
+      "change_pct": -2.6
+     }
+    },
+    "waist": {
+     "width_mm": {
+      "target": 98.8,
+      "sewn": 99.5,
+      "change_pct": 0.7
+     },
+     "height_mm": {
+      "target": 110.4,
+      "sewn": 103.8,
+      "change_pct": -6.0
+     }
+    },
+    "hips at the hind legs": {
+     "width_mm": {
+      "target": 92.7,
+      "sewn": 98.7,
+      "change_pct": 6.5
+     },
+     "height_mm": {
+      "target": 107.1,
+      "sewn": 113.9,
+      "change_pct": 6.4
+     }
+    },
+    "front leg (half elbow height)": {
+     "width_mm": {
+      "target": 26.8,
+      "sewn": 25.6,
+      "change_pct": -4.4
+     },
+     "depth_mm": {
+      "target": 28.7,
+      "sewn": 26.7,
+      "change_pct": -7.0
+     }
+    },
+    "hind leg (half elbow height)": {
+     "width_mm": {
+      "target": 28.1,
+      "sewn": 24.7,
+      "change_pct": -12.3
+     },
+     "depth_mm": {
+      "target": 31.9,
+      "sewn": 29.1,
+      "change_pct": -8.8
+     }
+    }
+   },
+   "seam_mismatch_max_pct": 7.94,
+   "fabric_slack_share": 0.377,
+   "outline_change_pct_range": [
+    -8.3,
+    0.1
+   ]
+  }
+ ],
+ "seams_after": {
+  "P01|P06": {
+   "len_mm": [
+    44.1,
+    43.6
+   ],
+   "mismatch_pct": 1.15
+  },
+  "P01|P05": {
+   "len_mm": [
+    44.1,
+    43.6
+   ],
+   "mismatch_pct": 1.15
+  },
+  "P01|P03": {
+   "len_mm": [
+    99.6,
+    101.1
+   ],
+   "mismatch_pct": 1.48
+  },
+  "P01|P02": {
+   "len_mm": [
+    99.6,
+    101.1
+   ],
+   "mismatch_pct": 1.48
+  },
+  "P07|P08": {
+   "len_mm": [
+    281.7,
+    281.7
+   ],
+   "mismatch_pct": 0.0
+  },
+  "P03|P06": {
+   "len_mm": [
+    57.8,
+    56.7
+   ],
+   "mismatch_pct": 1.87
+  },
+  "P02|P05": {
+   "len_mm": [
+    57.8,
+    56.7
+   ],
+   "mismatch_pct": 1.87
+  },
+  "P03|P08": {
+   "len_mm": [
+    79.3,
+    79.7
+   ],
+   "mismatch_pct": 0.42
+  },
+  "P02|P07": {
+   "len_mm": [
+    79.3,
+    79.7
+   ],
+   "mismatch_pct": 0.42
+  },
+  "P02|P04": {
+   "len_mm": [
+    49.7,
+    49.8
+   ],
+   "mismatch_pct": 0.21
+  },
+  "P02|P09": {
+   "len_mm": [
+    20.1,
+    20.6
+   ],
+   "mismatch_pct": 2.7
+  },
+  "P04|P05": {
+   "len_mm": [
+    58.5,
+    59.2
+   ],
+   "mismatch_pct": 1.25
+  },
+  "P07|P09": {
+   "len_mm": [
+    164.2,
+    166.0
+   ],
+   "mismatch_pct": 1.06
+  },
+  "P03|P04": {
+   "len_mm": [
+    49.7,
+    49.8
+   ],
+   "mismatch_pct": 0.19
+  },
+  "P03|P10": {
+   "len_mm": [
+    20.1,
+    20.6
+   ],
+   "mismatch_pct": 2.7
+  },
+  "P04|P06": {
+   "len_mm": [
+    58.4,
+    59.2
+   ],
+   "mismatch_pct": 1.31
+  },
+  "P08|P10": {
+   "len_mm": [
+    164.2,
+    166.0
+   ],
+   "mismatch_pct": 1.06
+  },
+  "P09|P10": {
+   "len_mm": [
+    109.9,
+    109.9
+   ],
+   "mismatch_pct": 0.0
+  },
+  "P07|P11": {
+   "len_mm": [
+    655.3,
+    653.6
+   ],
+   "mismatch_pct": 0.26
+  },
+  "P07|P13": {
+   "len_mm": [
+    55.8,
+    55.3
+   ],
+   "mismatch_pct": 0.84
+  },
+  "P11|P13": {
+   "len_mm": [
+    56.2,
+    56.3
+   ],
+   "mismatch_pct": 0.05
+  },
+  "P07|P15": {
+   "len_mm": [
+    60.9,
+    60.3
+   ],
+   "mismatch_pct": 1.04
+  },
+  "P07|P17": {
+   "len_mm": [
+    48.2,
+    44.3
+   ],
+   "mismatch_pct": 7.94
+  },
+  "P08|P18": {
+   "len_mm": [
+    48.2,
+    44.3
+   ],
+   "mismatch_pct": 7.94
+  },
+  "P17|P18": {
+   "len_mm": [
+    195.6,
+    195.6
+   ],
+   "mismatch_pct": 0.0
+  },
+  "P09|P11": {
+   "len_mm": [
+    42.2,
+    42.5
+   ],
+   "mismatch_pct": 0.64
+  },
+  "P11|P15": {
+   "len_mm": [
+    42.1,
+    41.9
+   ],
+   "mismatch_pct": 0.65
+  },
+  "P08|P12": {
+   "len_mm": [
+    655.3,
+    653.6
+   ],
+   "mismatch_pct": 0.26
+  },
+  "P11|P12": {
+   "len_mm": [
+    192.1,
+    192.1
+   ],
+   "mismatch_pct": 0.0
+  },
+  "P08|P14": {
+   "len_mm": [
+    55.8,
+    55.3
+   ],
+   "mismatch_pct": 0.84
+  },
+  "P12|P14": {
+   "len_mm": [
+    56.2,
+    56.3
+   ],
+   "mismatch_pct": 0.05
+  },
+  "P08|P16": {
+   "len_mm": [
+    60.9,
+    60.3
+   ],
+   "mismatch_pct": 1.04
+  },
+  "P10|P12": {
+   "len_mm": [
+    42.2,
+    42.5
+   ],
+   "mismatch_pct": 0.64
+  },
+  "P12|P16": {
+   "len_mm": [
+    42.1,
+    41.9
+   ],
+   "mismatch_pct": 0.65
+  }
+ },
+ "pattern_check": {
+  "P01": {
+   "flipped_triangles": 0,
+   "outline_valid": true,
+   "outline_change_pct": -2.8
+  },
+  "P02": {
+   "flipped_triangles": 0,
+   "outline_valid": true,
+   "outline_change_pct": -7.4
+  },
+  "P04": {
+   "flipped_triangles": 0,
+   "outline_valid": true,
+   "outline_change_pct": -0.8
+  },
+  "P05": {
+   "flipped_triangles": 0,
+   "outline_valid": true,
+   "outline_change_pct": -5.6
+  },
+  "P07": {
+   "flipped_triangles": 9,
+   "outline_valid": true,
+   "outline_change_pct": -5.3
+  },
+  "P09": {
+   "flipped_triangles": 0,
+   "outline_valid": true,
+   "outline_change_pct": -6.1
+  },
+  "P11": {
+   "flipped_triangles": 9,
+   "outline_valid": true,
+   "outline_change_pct": -4.7
+  },
+  "P13": {
+   "flipped_triangles": 0,
+   "outline_valid": true,
+   "outline_change_pct": 0.1
+  },
+  "P15": {
+   "flipped_triangles": 0,
+   "outline_valid": true,
+   "outline_change_pct": 0.0
+  },
+  "P17": {
+   "flipped_triangles": 0,
+   "outline_valid": true,
+   "outline_change_pct": -8.3
+  }
+ },
+ "verdict": {
+  "closed_surface": true,
+  "shape_p95_ok": false,
+  "parts_tilted_over_5deg": [
+   "hind leg R",
+   "hind leg L"
+  ],
+  "widths_off_by_more_than_7pct": [
+   "muzzle (between nose and eyes)",
+   "head at the eyes",
+   "skull behind the eyes",
+   "chest at the front legs",
+   "hind leg (half elbow height)"
+  ],
+  "seams_mismatch_over_3pct": [
+   "P07|P17",
+   "P08|P18"
+  ],
+  "pieces_not_cuttable": [],
+  "worst_pieces": [
+   "P15",
+   "P17",
+   "P11",
+   "P07"
+  ]
+ }
+}
